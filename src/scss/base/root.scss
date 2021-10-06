@@ -1,0 +1,17 @@
+@use "utilities" as *;
+
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-hover: #{$color-hover};
+
+  --background-primary: #{$background-primary};
+  --background-secondary: #{$background-secondary};
+
+  --border-primary: #{$border-primary};
+  --border-secondary: #{$border-secondary};
+
+  --shadow-primary: #{$shadow-primary};
+
+  --transition: #{$transition};
+}

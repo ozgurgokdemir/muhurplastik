@@ -1,0 +1,53 @@
+@use "utilities" as *;
+
+.header {
+  height: 4rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: var(--background-primary);
+  box-shadow: var(--shadow-primary);
+
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include breakpoint-down(small) {
+      padding: 0;
+    }
+  }
+
+  &__hamburger {
+    width: 4.25rem;
+    height: 100%;
+    padding: 1.125rem;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: space-between;
+
+    span {
+      width: 100%;
+      height: 0.25rem;
+      background-color: var(--color-secondary);
+    }
+  }
+
+  &__menu {
+    width: 100%;
+    height: 100%;
+
+    @include breakpoint-down(small) {
+      height: calc(100vh - 4rem);
+      position: fixed;
+      top: 4rem;
+      left: 0;
+      z-index: 999;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}

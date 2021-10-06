@@ -1,0 +1,38 @@
+@use "utilities" as *;
+
+body {
+  font: 400 16px/1.5 "Mukta", sans-serif;
+  letter-spacing: rem(0.5);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: normal;
+  font-stretch: 100%;
+  line-height: 1.125;
+  //letter-spacing: .25px;
+}
+
+h1 {
+  font-size: 1.875rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.125rem;
+}
+
+p {
+  max-width: 60ch;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--color-secondary);
+
+  &:hover {
+    color: var(--color-hover);
+  }
+}

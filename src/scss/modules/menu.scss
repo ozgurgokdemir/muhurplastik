@@ -1,0 +1,20 @@
+@use "utilities" as *;
+
+.menu {
+  &__nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include breakpoint-down(small) {
+      min-width: 320px;
+      max-width: 480px;
+      padding: 1.5rem;
+      background-color: var(--background-secondary);
+      box-shadow: var(--shadow-primary) inset;
+    }
+  }
+}

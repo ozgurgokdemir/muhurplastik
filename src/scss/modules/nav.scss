@@ -1,0 +1,94 @@
+@use "utilities" as *;
+
+//transform: translateX(100%) translateZ(0px);
+//visibility: hidden;
+.nav {
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(medium) {
+      height: 100%;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    position: relative;
+    cursor: pointer;
+
+    @include breakpoint(medium) {
+      height: 100%;
+    }
+
+    @include breakpoint-down(small) {
+      &:not(:last-child) {
+        border-bottom: var(--border-primary);
+      }
+    }
+
+    &:hover {
+      @include breakpoint(medium) {
+        //background-color: hsl(0, 0%, 0%, 1%);
+      }
+
+      *:first-child {
+        color: var(--color-hover);
+      }
+    }
+
+    &--dropdown:hover > ul {
+      visibility: visible;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 1.5rem 0;
+    font-size: 1.375rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    @include breakpoint(medium) {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      font-size: 1.125rem;
+    }
+
+    color: var(--color-secondary);
+
+    &--dropdown {
+      @extend .nav__link;
+      @include breakpoint-down(small) {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .fa-angle-down {
+      margin-left: 0.75rem;
+      @include breakpoint(medium) {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  &__footer {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    border-top: var(--border-primary);
+
+    span {
+      color: var(--color-primary);
+      letter-spacing: rem(0.125);
+    }
+  }
+}

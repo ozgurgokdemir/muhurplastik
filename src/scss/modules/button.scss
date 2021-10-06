@@ -1,0 +1,22 @@
+@use "utilities" as *;
+
+button,
+.button {
+  display: inline-block;
+  padding: 0.875rem 3.875rem;
+  border: rem(2) solid var(--color-primary);
+  text-align: center;
+  cursor: pointer;
+
+  color: var(--background-primary);
+  background-color: var(--color-primary);
+
+  outline: none;
+  transition: var(--transition);
+
+  &:focus,
+  &:hover {
+    color: var(--color-primary);
+    background-color: var(--background-primary);
+  }
+}
