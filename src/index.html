@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mühürplastik</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/dist/css/style.css">
-    <script src="https://kit.fontawesome.com/bf1ee2c0f4.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/bf1ee2c0f4.js" crossorigin="anonymous"></script> -->
     <script defer src="/dist/js/script.js"></script>
 </head>
 <body>
@@ -23,15 +25,29 @@
                 <span></span>
             </div>
             <div class="header__logo"></div>
-            <div class="header__menu">
+            <div id="hamburgerMenu" class="header__menu">
                 <nav class="menu__nav">
                     <div class="nav__popular hide-for-desktop">
 
                     </div>
                     <ul class="nav__list">
-                        <li class="nav__item" ><a class="nav__link" href="#">Anasayfa</a></li>
-                        <li class="nav__item" >
-                            <span class="nav__link--dropdown">Ürünlerimiz<i class="fas fa-angle-down"></i></span>
+                        <li class="nav__item"><a class="nav__link" href="#">Anasayfa</a></li>
+                        <li class="nav__item nav__item--dropdown">
+                            <span id="btnDropdown" class="nav__link">Ürünlerimiz<i class="fas fa-angle-down"></i></span>
+                            <div id="navDropdown" class="nav__dropdown">
+                                <div class="dropdown__content">
+                                    <div class="container">
+                                        <div class="dropdown__products hide-for-mobile">
+    
+                                        </div>
+                                        <ul class="dropdown__list">
+                                            <li class="dropdown__item"><a class="dropdown__link" href="#">Tüm Ürünler</a></li>
+                                            <li class="dropdown__item"><a class="dropdown__link" href="#">Kelebek Mühürler</a></li>
+                                            <li class="dropdown__item"><a class="dropdown__link" href="#">Plastik Mühürler</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav__item" ><a class="nav__link" href="#">İletişim</a></li>
                     </ul>
@@ -44,6 +60,11 @@
         </div>
     </header>
     <main class="main-content">
+        <section class="section hero">
+            <div class="hero__slider">
+                
+            </div>
+        </section>
         <section class="section trending">
             <div class="container trending__content">
 

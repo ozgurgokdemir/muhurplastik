@@ -1,0 +1,54 @@
+@use "utilities" as *;
+@use "nav";
+
+.dropdown {
+  &__content {
+    overflow: hidden;
+
+    @include breakpoint(medium) {
+      width: 100%;
+      padding: 1.5rem;
+      background-color: var(--background-primary);
+      box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.1) inset;
+    }
+
+    > .container {
+      @include breakpoint(medium) {
+        display: flex;
+        justify-content: flex-end;
+      }
+      @include breakpoint-down(small) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  &__list {
+    @extend .nav__list;
+
+    width: auto;
+    flex-direction: column;
+
+    @include breakpoint(medium) {
+      margin-right: 4.5rem;
+    }
+  }
+
+  &__item {
+    @extend .nav__item;
+
+    @include breakpoint-down(small) {
+      &:first-child {
+        .nav__link {
+          padding-top: 1rem;
+        }
+      }
+    }
+  }
+
+  &__link {
+    @extend .nav__link;
+
+    padding: 1.25rem 0;
+  }
+}
