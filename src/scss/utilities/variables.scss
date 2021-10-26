@@ -1,13 +1,18 @@
-$color-primary: #1e1e35;
-$color-secondary: hsl(240, 50%, 20%);
-$color-hover: hsl(0, 0%, 45%);
+$color-blue-1: #001233;
+$color-blue-2: #001845;
+$color-blue-3: #002855;
+$color-blue-4: #023e7d;
+$color-blue-5: #0353a4;
+$color-blue-6: #0466c8;
+$color-blue-7: #3ea6ff;
+$color-manatee: #979dac;
+$color-white-1: #ffffff;
+$color-white-2: #fafafa;
 
-$background-primary: hsl(0, 0%, 100%);
-$background-secondary: hsl(0, 0%, 98%);
+$border-1: 1px solid hsl(0, 0%, 90%);
+$shadow-1: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 
-$border-primary: 1px solid hsl(0, 0%, 90%);
-$border-secondary: 1px solid hsl(0, 0%, 90%);
+$transition-1: 0.2s ease-in-out;
+$transition-2: 0.3s ease-in-out;
 
-$shadow-primary: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-
-$transition: all 0.2s ease-in-out;
+$header-height: 4rem;

@@ -23,14 +23,14 @@
 
     @include breakpoint-down(small) {
       &:not(:last-child) {
-        border-bottom: var(--border-primary);
+        border-bottom: var(--border-1);
       }
     }
 
     &:hover,
     &:focus-within {
       > * {
-        color: var(--color-hover);
+        color: var(--color-blue-6);
       }
     }
 
@@ -58,14 +58,14 @@
       font-size: 1.125rem;
     }
 
-    color: var(--color-secondary);
+    color: var(--color-blue-2);
 
-    .fa-angle-down {
+    i {
       margin-left: 0.75rem;
       @include breakpoint(medium) {
         margin-left: 0.5rem;
       }
-      transition: var(--transition);
+      transition: transform var(--transition-1);
     }
   }
 
@@ -89,7 +89,7 @@
         height: 100%;
         position: absolute;
         z-index: -1;
-        background-color: var(--color-primary);
+        background-color: var(--color-blue-1);
         opacity: 0.3;
         backdrop-filter: blur(4px);
       }
@@ -102,10 +102,10 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
-    border-top: var(--border-primary);
+    border-top: var(--border-1);
 
     span {
-      color: var(--color-primary);
+      color: var(--color-blue-1);
       letter-spacing: rem(0.125);
     }
   }

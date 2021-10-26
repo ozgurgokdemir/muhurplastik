@@ -30,9 +30,10 @@ p {
 }
 
 a {
-  color: var(--color-secondary);
+  color: var(--color-manatee);
+  text-decoration: none;
 
   &:hover {
-    color: var(--color-hover);
+    color: var(--color-blue-6);
   }
 }

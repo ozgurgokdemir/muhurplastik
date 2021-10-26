@@ -1,17 +1,22 @@
 @use "utilities" as *;
 
 :root {
-  --color-primary: #{$color-primary};
-  --color-secondary: #{$color-secondary};
-  --color-hover: #{$color-hover};
+  --color-blue-1: #{$color-blue-1};
+  --color-blue-2: #{$color-blue-2};
+  --color-blue-3: #{$color-blue-3};
+  --color-blue-4: #{$color-blue-4};
+  --color-blue-5: #{$color-blue-5};
+  --color-blue-6: #{$color-blue-6};
+  --color-blue-7: #{$color-blue-7};
+  --color-manatee: #{$color-manatee};
+  --color-white-1: #{$color-white-1};
+  --color-white-2: #{$color-white-2};
 
-  --background-primary: #{$background-primary};
-  --background-secondary: #{$background-secondary};
+  --border-1: #{$border-1};
+  --shadow-1: #{$shadow-1};
 
-  --border-primary: #{$border-primary};
-  --border-secondary: #{$border-secondary};
+  --transition-1: #{$transition-1};
+  --transition-2: #{$transition-2};
 
-  --shadow-primary: #{$shadow-primary};
-
-  --transition: #{$transition};
+  --header-height: #{$header-height};
 }

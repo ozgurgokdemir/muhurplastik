@@ -7,18 +7,65 @@
 
     @include breakpoint(medium) {
       width: 100%;
-      padding: 1.5rem;
-      background-color: var(--background-primary);
+      padding: 1.5rem 3rem;
+      background-color: var(--color-white-2);
       box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.1) inset;
     }
 
     > .container {
-      @include breakpoint(medium) {
-        display: flex;
-        justify-content: flex-end;
-      }
       @include breakpoint-down(small) {
         padding-right: 0;
+      }
+      @include breakpoint(medium) {
+        max-width: rem(1200);
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+      }
+    }
+  }
+
+  &__products {
+    height: 100%;
+    display: flex;
+    flex-basis: 51rem;
+    gap: 1.5rem;
+
+    .featured-product {
+      width: 100%;
+      max-width: 16rem;
+      height: 100%;
+      text-align: center;
+      background-color: var(--color-white-1);
+      box-shadow: var(--shadow-1);
+      transition: transform var(--transition-1);
+
+      &:hover {
+        .featured-product__name {
+          color: var(--color-blue-6);
+        }
+      }
+
+      a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+      }
+
+      &__photo {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+      }
+
+      &__name {
+        padding: 0.75rem 0;
+        font-size: 1.375rem;
+        font-weight: 600;
+        color: var(--color-blue-1);
       }
     }
   }
@@ -30,25 +77,61 @@
     flex-direction: column;
 
     @include breakpoint(medium) {
-      margin-right: 4.5rem;
+      margin-left: 1.5rem;
+      //margin-right: 1.5rem;
+      flex-shrink: 0;
     }
   }
 
   &__item {
-    @extend .nav__item;
+    position: relative;
 
     @include breakpoint-down(small) {
+      &:not(:last-child) {
+        border-bottom: var(--border-1);
+      }
+
       &:first-child {
-        .nav__link {
+        .dropdown__link {
           padding-top: 1rem;
+        }
+      }
+
+      &:hover,
+      &:focus-within {
+        > * {
+          color: var(--color-blue-6);
+        }
+      }
+    }
+    @include breakpoint(medium) {
+      &:first-child {
+        .dropdown__link {
+          text-decoration: underline;
         }
       }
     }
   }
 
   &__link {
-    @extend .nav__link;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0;
+    font-size: 1.375rem;
+    font-weight: 600;
+    text-decoration: none;
 
-    padding: 1.25rem 0;
+    @include breakpoint(medium) {
+      height: 100%;
+      padding: 0;
+      margin: 0.75rem 0;
+      font-size: 1.125rem;
+      color: var(--color-blue-1);
+      &:hover {
+        color: var(--color-blue-6);
+      }
+    }
+
+    color: var(--color-blue-2);
   }
 }

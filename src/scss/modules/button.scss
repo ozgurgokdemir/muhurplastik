@@ -4,19 +4,19 @@ button,
 .button {
   display: inline-block;
   padding: 0.875rem 3.875rem;
-  border: rem(2) solid var(--color-primary);
+  border: rem(2) solid var(--color-blue-2);
   text-align: center;
   cursor: pointer;
 
-  color: var(--background-primary);
-  background-color: var(--color-primary);
+  color: var(--color-white-2);
+  background-color: var(--color-blue-2);
 
   outline: none;
-  transition: var(--transition);
+  transition: var(--transition-1);
 
   &:focus,
   &:hover {
-    color: var(--color-primary);
-    background-color: var(--background-primary);
+    color: var(--color-blue-2);
+    background-color: var(--color-white-2);
   }
 }

@@ -1,14 +1,14 @@
 @use "utilities" as *;
 
 .header {
-  height: 4rem;
+  height: var(--header-height);
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1000;
-  background-color: var(--background-primary);
-  box-shadow: var(--shadow-primary);
+  background-color: var(--color-white-1);
+  box-shadow: var(--shadow-1);
 
   > .container {
     height: 100%;
@@ -34,7 +34,18 @@
     span {
       width: 100%;
       height: 0.25rem;
-      background-color: var(--color-secondary);
+      background-color: var(--color-blue-1);
+    }
+  }
+
+  &__logo {
+    height: 100%;
+    a {
+      width: 14rem;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding-right: 1.125rem;
     }
   }
 
@@ -44,9 +55,9 @@
 
     @include breakpoint-down(small) {
       transform: translateX(-100%);
-      height: calc(100vh - 4rem);
+      height: calc(100vh - var(--header-height));
       position: fixed;
-      top: 4rem;
+      top: var(--header-height);
       left: 0;
       z-index: 999;
     }
@@ -58,7 +69,7 @@
         height: 100%;
         position: absolute;
         z-index: -1;
-        background-color: var(--color-primary);
+        background-color: var(--color-blue-1);
         opacity: 0.3;
         backdrop-filter: blur(4px);
       }

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mühürplastik</title>
+
+    <title>Plastik Mühür - MühürPlastik</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -24,26 +25,48 @@
                 <span></span>
                 <span></span>
             </div>
-            <div class="header__logo"></div>
+            <div class="header__logo">
+                <a href="index.html" title="MühürPlastik">
+                    <img src="images/muhurplastik-logo.svg" alt="MühürPlastik">
+                </a>
+            </div>
             <div id="hamburgerMenu" class="header__menu">
                 <nav class="menu__nav">
                     <div class="nav__popular hide-for-desktop">
 
                     </div>
                     <ul class="nav__list">
-                        <li class="nav__item"><a class="nav__link" href="#">Anasayfa</a></li>
+                        <li class="nav__item"><a class="nav__link" href="#">Ana Sayfa</a></li>
                         <li class="nav__item nav__item--dropdown">
-                            <span id="btnDropdown" class="nav__link">Ürünlerimiz<i class="fas fa-angle-down"></i></span>
+                            <span id="btnDropdown" class="nav__link" tabindex="0">Ürünlerimiz<i class="fas fa-angle-down"></i></span>
                             <div id="navDropdown" class="nav__dropdown">
                                 <div class="dropdown__content">
                                     <div class="container">
                                         <div class="dropdown__products hide-for-mobile">
-    
+                                            <div class="featured-product">
+                                                <a href="" title="">
+                                                    <img class="featured-product__photo" src="" alt="">
+                                                    <div class="featured-product__name">Lorem, ipsum dolor.</div>
+                                                </a>
+                                            </div>
+                                            <div class="featured-product">
+                                                <a href="" title="">
+                                                    <img class="featured-product__photo" src="" alt="">
+                                                    <div class="featured-product__name">Lorem, ipsum dolor.</div>
+                                                </a>
+                                            </div>
+                                            <div class="featured-product">
+                                                <a href="" title="">
+                                                    <img class="featured-product__photo" src="" alt="">
+                                                    <div class="featured-product__name">Lorem, ipsum dolor.</div>
+                                                </a>
+                                            </div>
                                         </div>
                                         <ul class="dropdown__list">
                                             <li class="dropdown__item"><a class="dropdown__link" href="#">Tüm Ürünler</a></li>
                                             <li class="dropdown__item"><a class="dropdown__link" href="#">Kelebek Mühürler</a></li>
                                             <li class="dropdown__item"><a class="dropdown__link" href="#">Plastik Mühürler</a></li>
+                                            <li class="dropdown__item"><a class="dropdown__link" href="#">Plastik Kelepçeler</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -52,7 +75,7 @@
                         <li class="nav__item" ><a class="nav__link" href="#">İletişim</a></li>
                     </ul>
                     <div class="nav__footer hide-for-desktop">
-                        <span>Mühürplastik © Tüm hakları saklıdır.</span>
+                        <span>&copy; 2021 MühürPlastik. Tüm hakları saklıdır.</span>
                         <a class="link" href="mailto:info@muhurplastik.com" target="_blank">info@muhurplastik.com</a>
                     </div>
                 </nav>
@@ -77,9 +100,51 @@
         </section>
     </main>
     <footer class="footer">
-        <div class="container footer__content">
-            <div class="footer__top"></div>
-            <div class="footer__bottom"></div>
+        <div class="footer__top">
+            <div class="container">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <a href="index.html" title="MühürPlastik">
+                            <img src="images/muhurplastik-logo.svg" alt="MühürPlastik">
+                        </a>
+                    </div>
+                    <div class="footer__info">
+                        <ul class="footer__list">
+                            <li><i class="fas fa-map-marker-alt"></i><span>Türkiye, Ankara</span></li>
+                            <li><i class="fas fa-phone-alt"></i><a class="footer__link" href="tel:123-456-7890">+90 456 78 90</a></li>
+                            <li><i class="fas fa-envelope"></i><a class="footer__link" href="mailto:info@muhurplastik.com">info@muhurplastik.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer__navigation">
+                    <h3 class="footer__title">Hızlı Bağlantılar</h3>
+                    <ul class="footer__list">
+                        <li><a class="footer__link" href="">Ana Sayfa</a></li>
+                        <li><a class="footer__link" href="">Ürünlerimiz</a></li>
+                        <li><a class="footer__link" href="">Hakkımızda</a></li>
+                        <li><a class="footer__link" href="">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer__links">
+                    <h3 class="footer__title">Güvenlik Mühürleri</h3>
+                    <ul class="footer__list">
+                        <li><a class="footer__link" href="">Plastik Mühürler</a></li>
+                        <li><a class="footer__link" href="">Kelebek Mühürler</a></li>
+                        <li><a class="footer__link" href="">Plastik Kelepçeler</a></li>
+                        <li><a class="footer__link" href="">Tüm Ürünler</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <p class="footer__copyright">&copy; 2021 MühürPlastik. Tüm hakları saklıdır.</p>
+                <ul class="footer__social">
+                    <li class="footer__facebook"><a class="footer__link" href="www.facebook.com/" title="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="footer__twitter"><a class="footer__link" href="www.twitter.com/" title="twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li class="footer__instagram"><a class="footer__link" href="www.instagram.com/" title="instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 </body>
