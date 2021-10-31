@@ -19,4 +19,7 @@
   --transition-2: #{$transition-2};
 
   --header-height: #{$header-height};
+  @include breakpoint-down(small) {
+    --header-height: #{$header-height-small};
+  }
 }

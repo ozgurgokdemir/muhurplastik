@@ -55,7 +55,7 @@
     @include breakpoint(medium) {
       height: 100%;
       padding: 0 1.5rem;
-      font-size: 1.125rem;
+      font-size: 1.25rem;
     }
 
     color: var(--color-blue-2);
@@ -76,7 +76,7 @@
     @include breakpoint(medium) {
       width: 100%;
       position: fixed;
-      top: 4rem;
+      top: var(--header-hight);
       left: 0;
       z-index: 999;
       cursor: auto;

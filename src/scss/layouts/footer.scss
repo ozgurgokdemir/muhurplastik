@@ -45,6 +45,7 @@
         margin: 0 auto;
       }
       filter: brightness(0) invert(0.98);
+      user-select: none;
     }
   }
 
@@ -75,7 +76,7 @@
     margin: 0 0 1.25rem 0;
     color: var(--color-white-2);
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 600;
   }
 
   &__list {

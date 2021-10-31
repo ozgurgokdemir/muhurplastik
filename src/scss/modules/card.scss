@@ -1,0 +1,56 @@
+@use "utilities" as *;
+
+.card {
+  a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: var(--border-1);
+    background-color: var(--color-white-1);
+    transition-property: box-shadow var(--transition-1);
+
+    &:hover {
+      @include breakpoint(medium) {
+        box-shadow: var(--shadow-1);
+      }
+      .card__image {
+        width: 100%;
+      }
+      .card__title {
+        color: var(--color-blue-6);
+      }
+    }
+  }
+  &__media {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    position: relative;
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: var(--color-blue-4);
+      opacity: 0.05;
+    }
+  }
+  &__image {
+    width: 90%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    transition: width var(--transition-1);
+  }
+  &__title {
+    margin: 0;
+    padding: 2rem;
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--color-blue-4);
+    transition-property: color var(--transition-1);
+  }
+}

@@ -1,0 +1,36 @@
+@use "utilities" as *;
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @include breakpoint(medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+textarea {
+  padding: 0.75rem 0.5rem 0.75rem 0.75rem;
+  font: 400 0.875rem/1.5 "Mukta", sans-serif;
+  border: var(--border-1);
+  &:focus {
+    outline: 1px solid var(--color-blue-7);
+  }
+}
+input[type="submit"] {
+  padding: 1rem 0;
+  font: 600 1.125rem/1.25 "Mukta", sans-serif;
+
+  @include breakpoint(medium) {
+    grid-column: 2 / -1;
+  }
+}
+
+textarea {
+  grid-column: 1 / -1;
+  height: 10rem;
+}

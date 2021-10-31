@@ -11,8 +11,12 @@ button,
   color: var(--color-white-2);
   background-color: var(--color-blue-2);
 
+  font-weight: 600;
+
   outline: none;
-  transition: var(--transition-1);
+  transition-duration: 200ms;
+  transition-property: color, background-color;
+  transition-timing-function: ease-in-out;
 
   &:focus,
   &:hover {

@@ -17,7 +17,8 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  color: var(--color-white-2);
+  color: var(--color-blue-1);
+  background-color: var(--color-white-2);
 }
 
 ul,
@@ -30,6 +31,10 @@ ol {
 img {
   max-width: 100%;
   display: block;
+}
+
+textarea {
+  resize: vertical;
 }
 
 .container {
