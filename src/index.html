@@ -30,52 +30,42 @@
                     <img src="images/muhurplastik-logo.svg" alt="MühürPlastik">
                 </a>
             </div>
-            <div id="hamburgerMenu" class="header__menu">
-                <nav class="menu__nav">
-                    <div class="nav__popular hide-for-desktop">
-
-                    </div>
+            <div class="header__navigation--desktop hide-for-mobile">
+                <nav class="nav">
                     <ul class="nav__list">
                         <li class="nav__item"><a class="nav__link" href="#">Ana Sayfa</a></li>
-                        <li class="nav__item nav__item--dropdown">
-                            <span id="btnDropdown" class="nav__link" tabindex="0">Ürünlerimiz<i class="fas fa-angle-down"></i></span>
-                            <div id="navDropdown" class="nav__dropdown">
-                                <div class="dropdown__content">
-                                    <div class="container">
-                                        <div class="dropdown__categories hide-for-mobile">
-                                            <div class="featured-product">
-                                                <a href="" title="">
-                                                    <img class="featured-product__photo" src="" alt="">
-                                                    <div class="featured-product__name">Lorem, ipsum dolor.</div>
-                                                </a>
-                                            </div>
-                                            <div class="featured-product">
-                                                <a href="" title="">
-                                                    <img class="featured-product__photo" src="" alt="">
-                                                    <div class="featured-product__name">Lorem, ipsum dolor.</div>
-                                                </a>
-                                            </div>
-                                            <div class="featured-product">
-                                                <a href="" title="">
-                                                    <img class="featured-product__photo" src="" alt="">
-                                                    <div class="featured-product__name">Lorem, ipsum dolor.</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <ul class="dropdown__list">
-                                            <li class="dropdown__item"><a class="dropdown__link" href="#">Tüm Ürünler</a></li>
-                                            <li class="dropdown__item"><a class="dropdown__link" href="#">Kelebek Mühürler</a></li>
-                                            <li class="dropdown__item"><a class="dropdown__link" href="#">Plastik Mühürler</a></li>
-                                            <li class="dropdown__item"><a class="dropdown__link" href="#">Plastik Kelepçeler</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <li id="dropdownDesktopContainer" class="nav__item">
+                            <a id="btnDropdownDesktop" class="nav__link" href="#">Ürünlerimiz<i class="fas fa-angle-down nav__chevron"></i></a>
+                            <ul id="dropdownDesktop" class="nav__dropdown">
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Sayaç Mühürleri</a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kayış Mühürler</a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kelebek Mühürler</a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kurşun Mühür</a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Mühür Pensesi</a></li>
+                            </ul>
                         </li>
-                        <li class="nav__item" ><a class="nav__link" href="#">İletişim</a></li>
+                        <li class="nav__item"><a class="nav__link" href="#">Hakkımızda</a></li>
+                        <li class="nav__item"><a class="nav__link" href="#">İletişim</a></li>
                     </ul>
-                    <div class="nav__footer hide-for-desktop">
-                        <span>&copy; 2021 MühürPlastik. Tüm hakları saklıdır.</span>
+                </nav>
+            </div>
+            <div id="hamburgerMenu" class="header__navigation--mobile hide-for-desktop">
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a class="nav__link" href="#">Ana Sayfa</a></li>
+                        <li class="nav__item">
+                            <div id="btnDropdownMobile" class="nav__link">Ürünlerimiz<i class="fas fa-chevron-down nav__chevron"></i></div>
+                            <ul id="dropdownMobile" class="nav__dropdown">
+                                <li class="nav__item"><a class="nav__link" href="#">Tüm Ürünler</a></li>
+                                <li class="nav__item"><a class="nav__link" href="#">Kelebek Mühürler</a></li>
+                                <li class="nav__item"><a class="nav__link" href="#">Plastik Mühürler</a></li>
+                                <li class="nav__item"><a class="nav__link" href="#">Plastik Kelepçeler</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__item"><a class="nav__link" href="#">Hakkımızda</a></li>
+                        <li class="nav__item"><a class="nav__link" href="#">İletişim</a></li>
+                    </ul>
+                    <div class="nav__footer">
                         <a class="link" href="mailto:info@muhurplastik.com" target="_blank">info@muhurplastik.com</a>
                     </div>
                 </nav>
@@ -104,7 +94,7 @@
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="images/PhotoRoom-20211030_030600.png" alt="" loading="lazy">
+                                <img class="card__image" src="images/MP012.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
                                 <h3 class="card__title">Lorem, ipsum dolor.</h3>
@@ -114,7 +104,7 @@
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="images/PhotoRoom-20211030_030600.png" alt="" loading="lazy">
+                                <img class="card__image" src="images/MP013.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
                                 <h3 class="card__title">Lorem, ipsum dolor.</h3>
@@ -124,7 +114,7 @@
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="images/PhotoRoom-20211030_030600.png" alt="" loading="lazy">
+                                <img class="card__image" src="images/MP016.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
                                 <h3 class="card__title">Lorem, ipsum dolor.</h3>
@@ -134,7 +124,7 @@
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="images/PhotoRoom-20211030_030600.png" alt="" loading="lazy">
+                                <img class="card__image" src="images/MP001_2.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
                                 <h3 class="card__title">Lorem, ipsum dolor.</h3>
@@ -144,7 +134,7 @@
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="images/PhotoRoom-20211030_030600.png" alt="" loading="lazy">
+                                <img class="card__image" src="images/MP005.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
                                 <h3 class="card__title">Lorem, ipsum dolor.</h3>
@@ -161,7 +151,7 @@
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="images/PhotoRoom-20211030_030600.png" alt="" loading="lazy">
+                                <img class="card__image" src="images/MP013-B.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
                                 <h3 class="card__title">Lorem, ipsum dolor.</h3>
@@ -170,7 +160,7 @@
                     </div><div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="images/PhotoRoom-20211030_030600.png" alt="" loading="lazy">
+                                <img class="card__image" src="images/MP013-B.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
                                 <h3 class="card__title">Lorem, ipsum dolor.</h3>
@@ -179,7 +169,7 @@
                     </div><div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="images/PhotoRoom-20211030_030600.png" alt="" loading="lazy">
+                                <img class="card__image" src="images/MP013-B.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
                                 <h3 class="card__title">Lorem, ipsum dolor.</h3>

@@ -15,5 +15,5 @@ $shadow-1: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 $transition-1: 0.2s ease-in-out;
 $transition-2: 0.3s ease-in-out;
 
-$header-height: 6rem;
-$header-height-small: 4rem;
+$header-height: calc(6rem + 1px);
+$header-height-small: calc(4rem + 1px);

@@ -36,7 +36,8 @@ a {
   color: var(--color-manatee);
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: var(--color-blue-6);
   }
 }

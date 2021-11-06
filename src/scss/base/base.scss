@@ -3,6 +3,16 @@
 html {
   font-size: 100%;
   box-sizing: border-box;
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--color-white-1);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-3);
+  }
+  &::-webkit-scrollbar {
+    width: 0.75rem;
+  }
 }
 
 *,
@@ -45,7 +55,9 @@ textarea {
 }
 
 .noscroll {
-  overflow: hidden;
+  @include breakpoint-down(xsmall) {
+    overflow: hidden;
+  }
 }
 
 .overlay {
@@ -61,13 +73,13 @@ textarea {
 }
 
 .hide-for-desktop {
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     display: none !important;
   }
 }
 
 .hide-for-mobile {
-  @include breakpoint-down(small) {
+  @include breakpoint-down(medium) {
     display: none !important;
   }
 }

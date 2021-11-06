@@ -18,7 +18,8 @@
   box-shadow: var(--shadow-1);
 
   &__link {
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: var(--color-blue-7);
     }
   }
@@ -84,7 +85,8 @@
       margin: 0 0 0.5rem 0;
     }
     a {
-      &:hover {
+      &:hover,
+      &:focus-visible {
         text-decoration: underline;
       }
     }
@@ -107,7 +109,6 @@
   &__copyright {
     margin: 0;
     display: block;
-    //color: var(--color-manatee);
   }
   &__social {
     display: flex;
@@ -144,43 +145,52 @@
     }
   }
   &__facebook {
-    &:hover a {
-      color: var(--color-white-1);
-      &::before {
-        opacity: 1;
+    a {
+      &:hover,
+      &:focus-visible {
+        color: var(--color-white-1);
+        &::before {
+          opacity: 1;
+        }
       }
-    }
-    a::before {
-      background-color: #4267b2;
+      &::before {
+        background-color: #4267b2;
+      }
     }
   }
   &__twitter {
-    &:hover a {
-      color: var(--color-white-1);
-      &::before {
-        opacity: 1;
+    a {
+      &:hover,
+      &:focus-visible {
+        color: var(--color-white-1);
+        &::before {
+          opacity: 1;
+        }
       }
-    }
-    a::before {
-      background-color: #1da1f2;
+      &::before {
+        background-color: #1da1f2;
+      }
     }
   }
   &__instagram {
-    &:hover a {
-      color: var(--color-white-1);
-      &::before {
-        opacity: 1;
+    a {
+      &:hover,
+      &:focus-visible {
+        color: var(--color-white-1);
+        &::before {
+          opacity: 1;
+        }
       }
-    }
-    a::before {
-      background: linear-gradient(
-        45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%
-      );
+      &::before {
+        background: linear-gradient(
+          45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%
+        );
+      }
     }
   }
 }
