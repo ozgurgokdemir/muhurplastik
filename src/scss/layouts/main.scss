@@ -1,9 +1,11 @@
 @use "utilities" as *;
 
-.main-content {
-  min-height: 100vh;
+main {
+  min-height: calc(100vh - var(--header-height));
   margin-top: var(--header-height);
+}
 
+.main-content {
   .hero {
     width: 100%;
     display: grid;
@@ -101,6 +103,9 @@
   }
 
   .products {
+    @include breakpoint-down(small) {
+      padding-top: 0;
+    }
     &__title {
       padding: 1.5rem 0;
       margin: 0;
@@ -109,7 +114,7 @@
       font-weight: 600;
       color: var(--color-blue-4);
 
-      @include breakpoint(medium) {
+      @include breakpoint(large) {
         font-size: 3rem;
       }
     }
@@ -124,8 +129,11 @@
     background-color: var(--color-white-1);
 
     &__form {
-      max-width: rem(720);
+      max-width: rem(480);
       margin: 0 auto;
+      @include breakpoint(large) {
+        max-width: rem(768);
+      }
       form {
         padding: 1.5rem;
       }
