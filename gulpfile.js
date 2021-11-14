@@ -1,16 +1,12 @@
 const {src, dest, watch, series, parallel} = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
+const browsersync = require('browser-sync').create();
 
 const files = {
-    html: 'src/*.html',
 	scss: 'src/scss/*.scss',
-    js: 'src/js/*.js'
+    js: 'src/js/*.js',
+    img: 'src/images/*'
 };
-
-function htmlTask() {
-    return src(files.html)
-        .pipe(dest('dist/'));
-}
 
 function scssTask() {
     return src(files.scss, { sourcemaps: true })
@@ -23,8 +19,26 @@ function jsTask() {
         .pipe(dest('dist/js', { sourcemaps: '.' }));
 }
 
-function watchTask() {
-    watch(['src/*.html', 'src/scss/**/*.scss', 'src/js/**/*.js'], parallel(htmlTask, scssTask, jsTask));
+function imageTask() {
+    return src(files.img)
+        .pipe(dest('dist/images'));
 }
 
-exports.default = series(parallel(htmlTask, scssTask, jsTask), watchTask);
+function browsersyncServe(cb) {
+    browsersync.init({
+        server: {
+            baseDir: '.'
+        }
+    });
+    cb();
+}
+function browsersyncReload(cb) {
+    browsersync.reload();
+    cb();
+}
+
+function watchTask() {
+    watch(['*.html', 'src/scss/**/*.scss', 'src/js/**/*.js', 'src/images/*'], parallel(scssTask, jsTask, imageTask, browsersyncReload));
+}
+
+exports.default = series(parallel(scssTask, jsTask, imageTask), browsersyncServe, watchTask);

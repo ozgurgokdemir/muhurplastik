@@ -119,9 +119,15 @@ main {
       }
     }
     &__cards {
+      width: 100%;
       padding: 1.5rem 0;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 1.5rem;
+
+      @include breakpoint(medium) {
+        grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+      }
     }
   }
 

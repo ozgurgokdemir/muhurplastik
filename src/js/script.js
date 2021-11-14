@@ -7,6 +7,8 @@ const breakpoints = {
   xlarge: fontSize * 75
 }
 
+const body = document.body;
+
 let windowWidth = window.innerWidth;
 
 let IsMediaMobile = () => {
@@ -42,23 +44,42 @@ function BreakpointResets() {
     // reset hamburger menu
     hamburgerMenu.classList.remove('active');
     hamburgerMenu.style.removeProperty('transform');
+    hamburgerMenu.style.removeProperty('transition');
     // reset hamburger button
-    btnHamburger.querySelectorAll('span').forEach((bar) => {
+    hamburgerToggle.querySelectorAll('span').forEach((bar) => {
       bar.style.removeProperty('transform');
       bar.style.removeProperty('top');
       bar.style.removeProperty('opacity');
     });
     // reset dropdown for desktop
-    dropdownDesktopContainer.classList.remove('active');
-    dropdownDesktop.style.height = 'auto';     
-    dropdownDesktopHeight = dropdownDesktop.clientHeight + 'px';
-    dropdownDesktop.style.removeProperty('height');
+    for (let i = 0; i < dropdownContainer.length; i++) {
+      if (dropdownContainer[i] == navDropdownContainer) {
+        dropdownContainer[i].classList.remove('active');
+        chevron[i].classList.add('active');
+        dropdown[i].style.height = 'auto';     
+        dropdownHeight[i] = dropdown[i].clientHeight + 'px';
+        dropdown[i].style.removeProperty('height');
+      }
+    }
+    // reset dropdown link for desktop
+    navDropdownToggle.setAttribute('href', dropdownToggleLink)
   } else {
+    hamburgerMenu.style.removeProperty('transition');
+    setTimeout(() => {
+      hamburgerMenu.style.transition = 'transform 300ms ease-in-out';
+    }, 300);
     // reset dropdown for mobile
-    dropdownMobileContainer.classList.remove('active');
-    dropdownMobile.style.height = 'auto';     
-    dropdownMobileHeight = dropdownMobile.clientHeight + 'px';
-    dropdownMobile.style.removeProperty('height');
+    for (let i = 0; i < dropdownContainer.length; i++) {
+      if (dropdownContainer[i] == navDropdownContainer) {
+        dropdownContainer[i].classList.remove('active');
+        chevron[i].classList.add('active');
+        dropdown[i].style.height = 'auto';     
+        dropdownHeight[i] = dropdown[i].clientHeight + 'px';
+        dropdown[i].style.removeProperty('height');
+      }
+    }
+    // remove dropdown link for mobile
+    navDropdownToggle.removeAttribute('href');
   }
 }
 
@@ -67,12 +88,15 @@ window.addEventListener('click', (event) => {
   if (IsActive(hamburgerMenu) && event.target == hamburgerMenu) {
     hamburgerMenu.classList.remove('active');
     body.classList.remove('noscroll');
-    HamburgerToggle(btnHamburger, 300);
+    HamburgerToggle(hamburgerToggle, 300);
   }
   // close dropdown when clicked outside
-  if (IsActive(dropdownMobileContainer) && !dropdownMobileContainer.contains(event.target)) {
-    dropdownMobileContainer.classList.remove('active');
-    DropdownToggle(dropdownMobile, dropdownMobileHeight, dropdownMobileContainer, 200);
+  if (IsMediaMobile() && IsActive(navDropdownContainer) && !navDropdownContainer.contains(event.target)) {
+    for (let i = 0; i < dropdownContainer.length; i++) {
+      if (dropdownContainer[i] == navDropdownContainer) {
+        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200); 
+      }
+    }
   }
 });
 
@@ -80,20 +104,29 @@ window.addEventListener('click', (event) => {
 
 /* NAVIGATION MENU */
 
-const btnHamburger = document.getElementById("btnHamburger");
-const hamburgerMenu = document.getElementById("hamburgerMenu");
-const body = document.body;
+const hamburgerToggle = document.querySelector(".js-hamburger-toggle");
+const hamburgerMenu = document.querySelector(".js-hamburger-menu");
+
+const navDropdownContainer = document.querySelector(".nav__item.js-dropdown-container");
+const navDropdownToggle = navDropdownContainer.querySelector(".nav__link.js-dropdown-toggle");
+
+let dropdownToggleLink = navDropdownToggle.getAttribute('href');
+
+if (IsMediaMobile()) {
+  hamburgerMenu.style.transition = 'transform 300ms ease-in-out';
+  navDropdownToggle.removeAttribute('href');
+}
 
 // toggle menu when clicked to hamburger button
-btnHamburger.addEventListener('click', () => {
+hamburgerToggle.addEventListener('click', () => {
   if (!IsActive(hamburgerMenu)) {
     hamburgerMenu.classList.add('active');
     body.classList.add('noscroll');
-    HamburgerToggle(btnHamburger, 300);
+    HamburgerToggle(hamburgerToggle, 300);
   } else {
     hamburgerMenu.classList.remove('active');
     body.classList.remove('noscroll');
-    HamburgerToggle(btnHamburger, 300);
+    HamburgerToggle(hamburgerToggle, 300);
   }
 });
 
@@ -126,64 +159,62 @@ function HamburgerToggle(target, duration=300) {
 
 /* DROPDOWN */
 
-const dropdownMobileContainer = document.getElementById("dropdownMobileContainer");
-const btnDropdownMobile = dropdownMobileContainer.querySelector("#btnDropdownMobile");
-const dropdownMobile = dropdownMobileContainer.querySelector("#dropdownMobile");
-let dropdownMobileHeight = TargetHeight(dropdownMobile);
+const dropdownContainer = document.querySelectorAll(".js-dropdown-container");
+const dropdownToggle = [];
+const dropdown = [];
+let dropdownHeight = [];
+const chevron = [];
 
-const dropdownDesktopContainer = document.getElementById("dropdownDesktopContainer");
-const btnDropdownDesktop = dropdownDesktopContainer.querySelector("#btnDropdownDesktop");
-const dropdownDesktop = dropdownDesktopContainer.querySelector("#dropdownDesktop");
-let dropdownDesktopHeight = TargetHeight(dropdownDesktop);
-
-// dropdown toggle for mobile
-
-// toggle dropdown when clicked
-btnDropdownMobile.addEventListener('click', () => {
-  if (!IsActive(dropdownMobileContainer)) {
-    dropdownMobileContainer.classList.add('active');
-    DropdownToggle(dropdownMobile, dropdownMobileHeight, dropdownMobileContainer, 200);
-  } else {
-    dropdownMobileContainer.classList.remove('active');
-    DropdownToggle(dropdownMobile, dropdownMobileHeight, dropdownMobileContainer, 200);
-  }
+dropdownContainer.forEach(element => {
+  dropdownToggle.push(element.querySelector(".js-dropdown-toggle"));
+  dropdown.push(element.querySelector(".js-dropdown"));
+  chevron.push(element.querySelector(".chevron"));
+  dropdownHeight.push(TargetHeight(element.querySelector(".js-dropdown")));
 });
 
-// dropdown toggle for desktop
-
-// open dropdown when hovered
-btnDropdownDesktop.addEventListener('mouseenter', () => {
-  if (!IsActive(dropdownDesktopContainer)) {
-    dropdownDesktopContainer.classList.add('active');
-    DropdownToggle(dropdownDesktop, dropdownDesktopHeight, dropdownDesktopContainer, 200);
+for (let i = 0; i < dropdownContainer.length; i++) {
+  // MOBILE & DESKTOP //
+  // toggle dropdown when clicked
+  dropdownToggle[i].addEventListener('click', () => {
+    if (!IsMediaMobile() && dropdownContainer[i] == navDropdownContainer) return;
+    if (!IsActive(dropdownContainer[i])) {
+      DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
+    } else {
+      DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
+    }
+  })
+  // DESKTOP //
+  if (dropdownContainer[i] == navDropdownContainer) {
+    // open dropdown when hovered
+    dropdownToggle[i].addEventListener('mouseenter', () => {
+      if (!IsMediaMobile() && !IsActive(dropdownContainer[i])) {
+        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
+      }
+    });
+    // close dropdown when mouse leave
+    dropdownContainer[i].addEventListener('mouseleave', () => {
+      if (!IsMediaMobile() && IsActive(dropdownContainer[i])) {
+        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
+      }
+    });
+    // open dropdown when focused
+    dropdownContainer[i].addEventListener('focusin', () => {
+      if (!IsMediaMobile() && !IsActive(dropdownContainer[i]) && dropdownContainer[i].matches(':focus-within')) {
+        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
+      }
+    });
+    // close dropdown when focus out
+    dropdownContainer[i].addEventListener('focusout', (event) => {
+      if (!IsMediaMobile() && IsActive(dropdownContainer[i]) && !dropdownContainer[i].matches(':focus-within')) {
+        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
+      }
+    });
   }
-});
+}
 
-// close dropdown when mouse leave
-dropdownDesktopContainer.addEventListener('mouseleave', () => {
-  if (IsActive(dropdownDesktopContainer)) {
-    dropdownDesktopContainer.classList.remove('active');
-    DropdownToggle(dropdownDesktop, dropdownDesktopHeight, dropdownDesktopContainer, 200);
-  }
-});
-
-// open dropdown when focused
-dropdownDesktopContainer.addEventListener('focusin', () => {
-  if (!IsActive(dropdownDesktopContainer)) {
-    dropdownDesktopContainer.classList.add('active');
-    DropdownToggle(dropdownDesktop, dropdownDesktopHeight, dropdownDesktopContainer, 200);
-  }
-});
-
-// close dropdown when focus out
-dropdownDesktopContainer.addEventListener('focusout', () => {
-  if (IsActive(dropdownDesktopContainer)) {
-    dropdownDesktopContainer.classList.remove('active');
-    DropdownToggle(dropdownDesktop, dropdownDesktopHeight, dropdownDesktopContainer, 200);
-  }
-});
-
-function DropdownToggle(target, targetHeight, container, duration=300) {
+function DropdownToggle(target, targetHeight, container, chevron, duration=300) {
+  container.classList.toggle('active')
+  chevron.classList.toggle('active');
   if (IsActive(container)) {
     target.style.visibility = "visible";
     target.style.height = targetHeight;
@@ -199,26 +230,3 @@ function DropdownToggle(target, targetHeight, container, duration=300) {
     }, duration);
   }
 }
-
-
-
-/* CATEGORIES */
-
-const categoryContainer = document.querySelector(".products-page__categories");
-const categoryToggle = categoryContainer.querySelector("#categoryToggle");
-const category = categoryContainer.querySelector(".products-page__category-list");
-let categoryHeight = TargetHeight(category);
-
-const chevron = categoryContainer.querySelector(".chevron");
-
-categoryToggle.addEventListener('click', () => {
-  if (!IsActive(categoryContainer)) {
-    categoryContainer.classList.add('active');
-    chevron.classList.add('active');
-    DropdownToggle(category, categoryHeight, categoryContainer, 200)
-  } else {
-    categoryContainer.classList.remove('active');
-    chevron.classList.remove('active');
-    DropdownToggle(category, categoryHeight, categoryContainer, 200)
-  }
-});

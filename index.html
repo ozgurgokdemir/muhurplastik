@@ -13,67 +13,48 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/dist/css/style.css">
+    <link rel="stylesheet" href="dist/css/style.css">
     <!-- <script src="https://kit.fontawesome.com/bf1ee2c0f4.js" crossorigin="anonymous"></script> -->
-    <script defer src="/dist/js/script.js"></script>
+    <script defer src="dist/js/script.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div id="btnHamburger" class="header__hamburger hide-for-desktop">
+            <div class="header__hamburger js-hamburger-toggle hide-for-desktop">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <div class="header__logo">
                 <a href="index.html" title="MühürPlastik">
-                    <img src="images/muhurplastik-logo.svg" alt="MühürPlastik">
+                    <img src="dist/images/muhurplastik-logo.svg" alt="MühürPlastik">
                 </a>
             </div>
-            <div class="header__navigation--desktop hide-for-mobile">
+            <div class="header__navigation js-hamburger-menu">
                 <nav class="nav">
                     <ul class="nav__list">
-                        <li class="nav__item"><a class="nav__link" href="index.html">Ana Sayfa</a></li>
-                        <li id="dropdownDesktopContainer" class="nav__item">
-                            <a id="btnDropdownDesktop" class="nav__link" href="kategoriler.html">Ürünlerimiz<div class="nav__chevron"><span></span><span></span></div></a>
-                            <ul id="dropdownDesktop" class="nav__dropdown">
-                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Sayaç Mühürleri</a></li>
-                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kayış Mühürler</a></li>
-                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kelebek Mühürler</a></li>
-                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kurşun Mühür</a></li>
-                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Mühür Pensesi</a></li>
+                        <li class="nav__item"><a class="nav__link" href="index.html">Ana Sayfa<i class="icon fas fa-home hide-for-desktop"></i></a></li>
+                        <li class="nav__item js-dropdown-container">
+                            <a class="nav__link js-dropdown-toggle" href="kategoriler.html">Ürünlerimiz<i class="icon"><div class="chevron active"><span></span><span></span></div></i></a>
+                            <ul class="nav__dropdown js-dropdown">
+                                <li class="nav__dropdown-item hide-for-desktop"><a class="nav__dropdown-link" href="kategoriler.html">Tüm Ürünler<i class="icon fas fa-arrow-right hide-for-desktop"></i></a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Sayaç Mühürleri<i class="icon fas fa-arrow-right hide-for-desktop"></i></a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kayış Mühürler<i class="icon fas fa-arrow-right hide-for-desktop"></i></a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kelebek Mühürler<i class="icon fas fa-arrow-right hide-for-desktop"></i></a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Kurşun Mühür<i class="icon fas fa-arrow-right hide-for-desktop"></i></a></li>
+                                <li class="nav__dropdown-item"><a class="nav__dropdown-link" href="#">Mühür Pensesi<i class="icon fas fa-arrow-right hide-for-desktop"></i></a></li>
                             </ul>
                         </li>
-                        <li class="nav__item"><a class="nav__link" href="#">Hakkımızda</a></li>
-                        <li class="nav__item"><a class="nav__link" href="iletisim.html">İletişim</a></li>
+                        <li class="nav__item"><a class="nav__link" href="#">Hakkımızda<i class="icon fas fa-question hide-for-desktop"></i></a></li>
+                        <li class="nav__item"><a class="nav__link" href="iletisim.html">İletişim<i class="icon fas fa-reply hide-for-desktop"></i></a></li>
                     </ul>
-                </nav>
-            </div>
-            <div id="hamburgerMenu" class="header__navigation--mobile hide-for-desktop">
-                <nav class="nav">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a class="nav__link" href="index.html">Ana Sayfa</a></li>
-                        <li id="dropdownMobileContainer" class="nav__item">
-                            <div id="btnDropdownMobile" class="nav__link">Ürünlerimiz<div class="nav__chevron"><span></span><span></span></div></div>
-                            <ul id="dropdownMobile" class="nav__dropdown">
-                                <li class="nav__item"><a class="nav__link" href="kategoriler.html">Tüm Ürünler</a></li>
-                                <li class="nav__item"><a class="nav__link" href="#">Sayaç Mühürleri</a></li>
-                                <li class="nav__item"><a class="nav__link" href="#">Kayış Mühürler</a></li>
-                                <li class="nav__item"><a class="nav__link" href="#">Kelebek Mühürler</a></li>
-                                <li class="nav__item"><a class="nav__link" href="#">Kurşun Mühür</a></li>
-                                <li class="nav__item"><a class="nav__link" href="#">Mühür Pensesi</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav__item"><a class="nav__link" href="#">Hakkımızda</a></li>
-                        <li class="nav__item"><a class="nav__link" href="iletisim.html">İletişim</a></li>
-                    </ul>
-                    <div class="nav__footer">
+                    <div class="nav__footer hide-for-desktop">
                         <ul class="nav__social">
-                            <li class="nav__facebook"><a href="www.facebook.com/" title="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                            <li class="nav__twitter"><a href="www.twitter.com/" title="twitter"><i class="fab fa-twitter"></i></a></li>
-                            <li class="nav__instagram"><a href="www.instagram.com/" title="instagram"><i class="fab fa-instagram"></i></a></li>
-                            <li class="nav__telefon"><a href="tel:123-456-7890" title="telefon"><i class="fas fa-phone-alt"></i></a></li>
-                            <li class="nav__eposta"><a href="mailto:info@muhurplastik.com" title="eposta"><i class="fas fa-envelope"></i></a></li>
+                            <li class="nav__facebook"><a href="https://www.facebook.com/" target="_blank" title="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="nav__instagram"><a href="https://www.instagram.com/" target="_blank" title="instagram"><i class="fab fa-instagram"></i></a></li>
+                            <li class="nav__whatsapp"><a href="https://wa.me/15551234567" target="_blank" title="whatsapp"><i class="fab fa-whatsapp"></i></a></li>
+                            <li class="nav__telefon"><a href="tel:123-456-7890" target="_blank" title="telefon"><i class="fas fa-phone-alt"></i></a></li>
+                            <li class="nav__eposta"><a href="mailto:info@muhurplastik.com" target="_blank" title="eposta"><i class="fas fa-envelope"></i></a></li>
                         </ul>
                     </div>
                 </nav>
@@ -90,7 +71,7 @@
                     <div class="hero__bottom">
                         <h2 class="hero__title">Lorem ipsum dolor sit.</h2>
                         <p class="hero__description">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                        <a class="button" href="#">Tüm Ürünler</a>
+                        <a class="button" href="kategoriler.html">Tüm Ürünler</a>
                     </div>
                 </div>
             </div>
@@ -207,14 +188,14 @@
                 <div class="footer__brand">
                     <div class="footer__logo">
                         <a href="index.html" title="MühürPlastik">
-                            <img src="images/muhurplastik-logo.svg" alt="MühürPlastik" draggable="false">
+                            <img src="dist/images/muhurplastik-logo.svg" alt="MühürPlastik" draggable="false">
                         </a>
                     </div>
                     <div class="footer__info">
                         <ul class="footer__list">
                             <li><i class="fas fa-map-marker-alt"></i><span>Türkiye, Ankara</span></li>
-                            <li><i class="fas fa-phone-alt"></i><a class="footer__link" href="tel:123-456-7890">+90 456 78 90</a></li>
-                            <li><i class="fas fa-envelope"></i><a class="footer__link" href="mailto:info@muhurplastik.com">info@muhurplastik.com</a></li>
+                            <li><i class="fas fa-phone-alt"></i><a class="footer__link" target="_blank" href="tel:123-456-7890">+90 456 78 90</a></li>
+                            <li><i class="fas fa-envelope"></i><a class="footer__link" target="_blank" href="mailto:info@muhurplastik.com">info@muhurplastik.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -242,9 +223,9 @@
             <div class="container">
                 <p class="footer__copyright">&copy; 2021 MühürPlastik. Tüm hakları saklıdır.</p>
                 <ul class="footer__social">
-                    <li class="footer__facebook"><a class="footer__link" href="www.facebook.com/" title="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                    <li class="footer__twitter"><a class="footer__link" href="www.twitter.com/" title="twitter"><i class="fab fa-twitter"></i></a></li>
-                    <li class="footer__instagram"><a class="footer__link" href="www.instagram.com/" title="instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li class="footer__facebook"><a class="footer__link" href="https://www.facebook.com/" target="_blank" title="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="footer__twitter"><a class="footer__link" href="https://twitter.com/" target="_blank" title="twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li class="footer__instagram"><a class="footer__link" href="https://www.instagram.com/" target="_blank" title="instagram"><i class="fab fa-instagram"></i></a></li>
                 </ul>
             </div>
         </div>

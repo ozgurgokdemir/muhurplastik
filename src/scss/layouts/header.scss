@@ -70,7 +70,8 @@
   }
 
   &__navigation {
-    &--mobile {
+    height: 100%;
+    @include breakpoint-down(medium) {
       width: 100%;
       height: calc(100vh - var(--header-height));
       position: fixed;
@@ -78,43 +79,13 @@
       left: 0;
       transform: translateX(-100%);
       z-index: 999;
-      transition: transform var(--transition-2);
+      //transition: transform var(--transition-2);
 
       &.active {
         transform: translateX(0);
       }
 
       &::before {
-        content: "";
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        background-color: var(--color-blue-1);
-        opacity: 0.3;
-        backdrop-filter: blur(4px);
-      }
-    }
-    &--desktop {
-      height: 100%;
-    }
-  }
-
-  &__menu {
-    width: 100%;
-    height: 100%;
-
-    @include breakpoint-down(small) {
-      transform: translateX(-100%);
-      height: calc(100vh - var(--header-height));
-      position: fixed;
-      top: var(--header-height);
-      left: 0;
-      z-index: 999;
-    }
-
-    &::before {
-      @include breakpoint-down(small) {
         content: "";
         width: 100%;
         height: 100%;
