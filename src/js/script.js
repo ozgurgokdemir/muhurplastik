@@ -1,3 +1,5 @@
+//#region => GLOBAL 
+
 const fontSize = window.getComputedStyle(document.documentElement).getPropertyValue('font-size').replace('px', '');
 
 const breakpoints = {
@@ -33,101 +35,66 @@ let TargetHeight = (target) => {
   return height;
 }
 
-window.addEventListener('resize', () => {
-  windowWidth = window.innerWidth;
-  if (IsBreakPoint()) BreakpointResets();
-});
-
-function BreakpointResets() {
+let ResetStyles = () => {
+  // update current media
   currentMedia = IsMediaMobile();
+  // reset dropdown for desktop
+  dropdowns.forEach(element => {
+    element.container.classList.remove('active');
+    element.button?.classList.remove('active');
+    element.hover?.classList.remove('active');
+    element.chevron.forEach(element => element?.classList.add('active'));
+    element.height = TargetHeight(element.dropdown);
+  })
   if (windowWidth >= breakpoints.large) {
     // reset hamburger menu
     hamburgerMenu.classList.remove('active');
     hamburgerMenu.style.removeProperty('transform');
     hamburgerMenu.style.removeProperty('transition');
     // reset hamburger button
-    hamburgerToggle.querySelectorAll('span').forEach((bar) => {
+    hamburgerButton.querySelectorAll('span').forEach((bar) => {
       bar.style.removeProperty('transform');
       bar.style.removeProperty('top');
       bar.style.removeProperty('opacity');
     });
-    // reset dropdown for desktop
-    for (let i = 0; i < dropdownContainer.length; i++) {
-      if (dropdownContainer[i] == navDropdownContainer) {
-        dropdownContainer[i].classList.remove('active');
-        chevron[i].classList.add('active');
-        dropdown[i].style.height = 'auto';     
-        dropdownHeight[i] = dropdown[i].clientHeight + 'px';
-        dropdown[i].style.removeProperty('height');
-      }
-    }
-    // reset dropdown link for desktop
-    navDropdownToggle.setAttribute('href', dropdownToggleLink)
   } else {
     hamburgerMenu.style.removeProperty('transition');
     setTimeout(() => {
       hamburgerMenu.style.transition = 'transform 300ms ease-in-out';
     }, 300);
-    // reset dropdown for mobile
-    for (let i = 0; i < dropdownContainer.length; i++) {
-      if (dropdownContainer[i] == navDropdownContainer) {
-        dropdownContainer[i].classList.remove('active');
-        chevron[i].classList.add('active');
-        dropdown[i].style.height = 'auto';     
-        dropdownHeight[i] = dropdown[i].clientHeight + 'px';
-        dropdown[i].style.removeProperty('height');
-      }
-    }
-    // remove dropdown link for mobile
-    navDropdownToggle.removeAttribute('href');
   }
 }
+
+window.addEventListener('resize', () => {
+  // update current page width
+  windowWidth = window.innerWidth;
+  // reset styles when breakpoint
+  if (IsBreakPoint()) ResetStyles();
+});
 
 window.addEventListener('click', (event) => {
   // close menu when clicked to overlay
   if (IsActive(hamburgerMenu) && event.target == hamburgerMenu) {
     hamburgerMenu.classList.remove('active');
     body.classList.remove('noscroll');
-    HamburgerToggle(hamburgerToggle, 300);
+    HamburgerToggle(hamburgerButton, 300);
   }
-  // close dropdown when clicked outside
-  if (IsMediaMobile() && IsActive(navDropdownContainer) && !navDropdownContainer.contains(event.target)) {
-    for (let i = 0; i < dropdownContainer.length; i++) {
-      if (dropdownContainer[i] == navDropdownContainer) {
-        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200); 
-      }
-    }
-  }
+  /* close dropdown when clicked outside => !navDropdownContainer.contains(event.target) */
 });
+//#endregion
 
+//#region => NAVIGATION MENU 
 
-
-/* NAVIGATION MENU */
-
-const hamburgerToggle = document.querySelector(".js-hamburger-toggle");
+const hamburgerButton = document.querySelector(".js-hamburger-toggle");
 const hamburgerMenu = document.querySelector(".js-hamburger-menu");
 
-const navDropdownContainer = document.querySelector(".nav__item.js-dropdown-container");
-const navDropdownToggle = navDropdownContainer.querySelector(".nav__link.js-dropdown-toggle");
-
-let dropdownToggleLink = navDropdownToggle.getAttribute('href');
-
-if (IsMediaMobile()) {
-  hamburgerMenu.style.transition = 'transform 300ms ease-in-out';
-  navDropdownToggle.removeAttribute('href');
-}
+if (IsMediaMobile) hamburgerMenu.style.transition = 'transform 300ms ease-in-out';
 
 // toggle menu when clicked to hamburger button
-hamburgerToggle.addEventListener('click', () => {
-  if (!IsActive(hamburgerMenu)) {
-    hamburgerMenu.classList.add('active');
-    body.classList.add('noscroll');
-    HamburgerToggle(hamburgerToggle, 300);
-  } else {
-    hamburgerMenu.classList.remove('active');
-    body.classList.remove('noscroll');
-    HamburgerToggle(hamburgerToggle, 300);
-  }
+hamburgerButton.addEventListener('click', () => {
+  hamburgerMenu.classList.toggle('active');
+  body.classList.toggle('noscroll');
+  HamburgerToggle(hamburgerButton, 300);
 });
 
 function HamburgerToggle(target, duration=300) {
@@ -154,79 +121,78 @@ function HamburgerToggle(target, duration=300) {
     }, duration / 2);
   }
 }
+//#endregion
 
+//#region => DROPDOWN 
 
+class Dropdown {
+  constructor(container, button, hover, dropdown, height, chevron) {
+    this.container = container;
+    this.button = button;
+    this.hover = hover;
+    this.dropdown = dropdown;
+    this.height = height;
+    this.chevron = chevron;
+  }
+  toggle(duration = 200) {
+    this.container.classList.toggle('active');
+    this.button?.classList.toggle('active');
+    this.hover?.classList.toggle('active');
+    this.chevron?.forEach(element => element.classList.toggle('active'));
+    if (IsActive(this.container)) {
+      this.dropdown.style.visibility = "visible";
+      this.dropdown.style.height = this.height;
+    } else {
+      this.dropdown.style.height = this.height;
+      setTimeout(() => {
+        this.dropdown.style.height = '0px';
+      }, 0);
+      setTimeout( () => {
+        if (!IsActive(this.container)) {
+          this.dropdown.style.visibility = "hidden";
+        }
+      }, duration);
+    }
+  }
+}
 
-/* DROPDOWN */
+const dropdowns = [];
 
-const dropdownContainer = document.querySelectorAll(".js-dropdown-container");
-const dropdownToggle = [];
-const dropdown = [];
-let dropdownHeight = [];
-const chevron = [];
-
-dropdownContainer.forEach(element => {
-  dropdownToggle.push(element.querySelector(".js-dropdown-toggle"));
-  dropdown.push(element.querySelector(".js-dropdown"));
-  chevron.push(element.querySelector(".chevron"));
-  dropdownHeight.push(TargetHeight(element.querySelector(".js-dropdown")));
+document.querySelectorAll(".js-dropdown-container").forEach(element => {
+  dropdowns.push(new Dropdown(
+    element,
+    element.querySelector(".js-dropdown-button"),
+    element.querySelector(".js-dropdown-hover"),
+    element.querySelector(".js-dropdown"),
+    TargetHeight(element.querySelector(".js-dropdown")),
+    element.querySelectorAll(".chevron")
+  ))
 });
 
-for (let i = 0; i < dropdownContainer.length; i++) {
-  // MOBILE & DESKTOP //
-  // toggle dropdown when clicked
-  dropdownToggle[i].addEventListener('click', () => {
-    if (!IsMediaMobile() && dropdownContainer[i] == navDropdownContainer) return;
-    if (!IsActive(dropdownContainer[i])) {
-      DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
-    } else {
-      DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
-    }
-  })
-  // DESKTOP //
-  if (dropdownContainer[i] == navDropdownContainer) {
+dropdowns.forEach(element => {
+  if (element.button != undefined) {
+    // toggle dropdown when clicked
+    element.button.addEventListener("click", () => element.toggle(200))
+  }
+  if (element.hover != undefined) {
     // open dropdown when hovered
-    dropdownToggle[i].addEventListener('mouseenter', () => {
-      if (!IsMediaMobile() && !IsActive(dropdownContainer[i])) {
-        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
-      }
+    element.hover.addEventListener('mouseenter', () => {
+      if (!IsMediaMobile() && !IsActive(element.container)) element.toggle(200);
     });
     // close dropdown when mouse leave
-    dropdownContainer[i].addEventListener('mouseleave', () => {
-      if (!IsMediaMobile() && IsActive(dropdownContainer[i])) {
-        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
-      }
+    element.container.addEventListener('mouseleave', () => {
+      if (!IsMediaMobile() && IsActive(element.container)) element.toggle(200);
     });
     // open dropdown when focused
-    dropdownContainer[i].addEventListener('focusin', () => {
-      if (!IsMediaMobile() && !IsActive(dropdownContainer[i]) && dropdownContainer[i].matches(':focus-within')) {
-        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
-      }
+    element.container.addEventListener('focusin', () => {
+      if (!IsMediaMobile() && !IsActive(element.container) 
+      && element.container.matches(':focus-within')) element.toggle(200);
     });
     // close dropdown when focus out
-    dropdownContainer[i].addEventListener('focusout', (event) => {
-      if (!IsMediaMobile() && IsActive(dropdownContainer[i]) && !dropdownContainer[i].matches(':focus-within')) {
-        DropdownToggle(dropdown[i], dropdownHeight[i], dropdownContainer[i], chevron[i], 200);
-      }
+    element.container.addEventListener('focusout', () => {
+      if (!IsMediaMobile() && IsActive(element.container) 
+      && !element.container.matches(':focus-within')) element.toggle(200);
     });
   }
-}
-
-function DropdownToggle(target, targetHeight, container, chevron, duration=300) {
-  container.classList.toggle('active')
-  chevron.classList.toggle('active');
-  if (IsActive(container)) {
-    target.style.visibility = "visible";
-    target.style.height = targetHeight;
-  } else {
-    target.style.height = targetHeight;
-    setTimeout(() => {
-      target.style.height = '0px';
-    }, 0);
-    setTimeout( () => {
-      if (!IsActive(container)) {
-        target.style.visibility = "hidden";
-      }
-    }, duration);
-  }
-}
+})
+//#endregion

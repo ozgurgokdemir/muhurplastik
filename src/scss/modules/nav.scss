@@ -58,6 +58,14 @@
       outline-style: solid;
       outline-offset: 0;
     }
+    &.active {
+      color: var(--color-blue-6);
+    }
+    &:not(.active) {
+      @include breakpoint-down(small) {
+        color: var(--color-blue-2);
+      }
+    }
     @include breakpoint(large) {
       height: 100%;
       padding: 0 1.5rem;

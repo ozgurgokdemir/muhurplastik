@@ -1,6 +1,5 @@
 @use "utilities" as *;
 
-button,
 .button {
   display: inline-block;
   padding: 0.875rem 3.875rem;
@@ -24,4 +23,15 @@ button,
     color: var(--color-blue-2);
     background-color: var(--color-white-1);
   }
+}
+
+.dropdown-button {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font: 400 16px/1.5 "Mukta", sans-serif;
+  letter-spacing: 0.03125rem;
+  cursor: pointer;
 }
