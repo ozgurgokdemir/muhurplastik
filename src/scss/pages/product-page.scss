@@ -1,0 +1,157 @@
+@use "utilities" as *;
+
+.product-page {
+    background-color: var(--color-white-1);
+    .product {
+        @include breakpoint-down(medium) {
+            padding-top: 1.5rem;
+        }
+        > .container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+
+            @include breakpoint(large) {
+                flex-direction: row;
+                gap: 5rem;
+            }
+        }
+        &__left {
+            max-height: calc(100vh - var(--header-height) - 6rem);
+            aspect-ratio: 4 / 3;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            @include breakpoint(large) {
+                gap: 1.25rem;
+            }
+        }
+        &__right {
+            max-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        &__image {
+            img {
+                aspect-ratio: 4 / 3;
+                border: var(--border-1);
+                background-color: #f3f6f9;
+            }
+        }
+        &__thumbnails {
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 0.5rem;
+
+            @include breakpoint(large) {
+                gap: 1.25rem;
+            }
+            img {
+                aspect-ratio: 4 / 3;
+                border: var(--border-1);
+                cursor: pointer;
+
+                &.active {
+                    background-color: #f3f6f9;
+                }
+            }
+        }
+        &__title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-blue-2);
+
+            @include breakpoint(large) {
+                font-size: 2.5rem;
+            }
+        }
+        &__description {
+            max-width: 60ch;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            color: var(--color-gray-1);
+        }
+        &__usage {
+            margin-top: auto;
+            padding: 1.5rem;
+
+            background-color: #f3f6f9;
+            color: var(--color-blue-3);
+            /*border-top: rem(2) solid var(--color-blue-2);
+            border-bottom: rem(2) solid var(--color-blue-2);*/
+            border: rem(2) solid var(--color-blue-2);
+
+            header {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--color-blue-2);
+            }
+        }
+        &__order-button {
+            margin-top: 1.25rem;
+            font-size: 1.25rem;
+        }
+    }
+
+    .similar-products {
+        background-color: var(--color-white-2);
+
+        > .container {
+            display: grid;
+            grid-gap: 1.5rem;
+
+            @include breakpoint(large) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        &__title {
+            padding: 1.5rem 0;
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--color-blue-2);
+            order: 1;
+
+            @include breakpoint(large) {
+                padding: 0;
+                margin-right: auto;
+                place-self: center;
+                grid-column: 1 / 2;
+                text-align: left;
+                font-size: 2.5rem;
+            }
+        }
+        &__cards {
+            display: grid;
+            grid-gap: 1.5rem;
+            order: 2;
+
+            @include breakpoint(large) {
+                grid-template-columns: repeat(3, 1fr);
+                grid-column: 1 / -1;
+                order: 3;
+            }
+        }
+        &__show {
+            display: flex;
+            justify-content: center;
+            order: 3;
+
+            @include breakpoint(large) {
+                width: fit-content;
+                height: fit-content;
+                margin-left: auto;
+                place-self: center;
+                grid-column: 2 / -1;
+                order: 2;
+            }
+
+            i {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}

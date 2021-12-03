@@ -1,37 +1,59 @@
 @use "utilities" as *;
 
+button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
 .button {
-  display: inline-block;
-  padding: 0.875rem 3.875rem;
-  border: rem(2) solid var(--color-blue-2);
-  text-align: center;
-  cursor: pointer;
+    display: inline-block;
+    padding: 0.875rem 3.875rem;
+    border: rem(2) solid var(--color-blue-2);
+    text-align: center;
+    cursor: pointer;
 
-  color: var(--color-white-1);
-  background-color: var(--color-blue-2);
+    color: var(--color-white-1);
+    background-color: var(--color-blue-2);
 
-  font-size: 1.125rem;
-  font-weight: 600;
+    font-size: 1.125rem;
+    font-weight: 600;
 
-  outline: none;
-  transition-duration: 200ms;
-  transition-property: color, background-color;
-  transition-timing-function: ease-in-out;
+    outline: none;
+    white-space: nowrap;
 
-  &:focus,
-  &:hover {
-    color: var(--color-blue-2);
-    background-color: var(--color-white-1);
-  }
+    transition-duration: 200ms;
+    transition-property: color, background-color;
+    transition-timing-function: ease-in-out;
+
+    &:focus,
+    &:hover {
+        color: var(--color-blue-2);
+        background-color: var(--color-white-1);
+    }
+
+    &--reverse {
+        @extend .button;
+
+        color: var(--color-blue-2);
+        background-color: transparent;
+
+        &:focus,
+        &:hover {
+            color: var(--color-white-1);
+            background-color: var(--color-blue-2);
+        }
+    }
 }
 
 .dropdown-button {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  font: 400 16px/1.5 "Mukta", sans-serif;
-  letter-spacing: 0.03125rem;
-  cursor: pointer;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-family: "Mukta", sans-serif;
+    letter-spacing: 0.03125rem;
+    cursor: pointer;
 }

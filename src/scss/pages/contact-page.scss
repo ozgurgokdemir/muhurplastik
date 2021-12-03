@@ -13,6 +13,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 4rem;
       @include breakpoint(large) {
         max-width: 90rem;
         flex-direction: row;
@@ -32,16 +33,16 @@
     }
     &__list {
       width: fit-content;
-      margin-bottom: 4rem;
+      //margin-bottom: 4rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       flex: 1;
       gap: 1.5rem;
       font-size: 1.125rem;
-      @include breakpoint(large) {
+      /*@include breakpoint(large) {
         margin-bottom: calc(rem(58) + 1.5rem);
-      }
+      }*/
       li {
         display: flex;
         &:hover,
