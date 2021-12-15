@@ -1,26 +1,26 @@
 @use "utilities" as *;
 
 :root {
-    --color-blue-1: #{$color-blue-1};
-    --color-blue-2: #{$color-blue-2};
-    --color-blue-3: #{$color-blue-3};
-    --color-blue-4: #{$color-blue-4};
-    --color-blue-5: #{$color-blue-5};
-    --color-blue-6: #{$color-blue-6};
-    --color-blue-7: #{$color-blue-7};
-    --color-manatee: #{$color-manatee};
-    --color-white-1: #{$color-white-1};
-    --color-white-2: #{$color-white-2};
-    --color-gray-1: #{$color-gray-1};
+	--color-blue-1: #{$color-blue-1};
+	--color-blue-2: #{$color-blue-2};
+	--color-blue-3: #{$color-blue-3};
+	--color-blue-4: #{$color-blue-4};
+	--color-blue-5: #{$color-blue-5};
+	--color-blue-6: #{$color-blue-6};
+	--color-blue-7: #{$color-blue-7};
+	--color-manatee: #{$color-manatee};
+	--color-white-1: #{$color-white-1};
+	--color-white-2: #{$color-white-2};
+	--color-gray-1: #{$color-gray-1};
 
-    --border-1: #{$border-1};
-    --shadow-1: #{$shadow-1};
+	--border-1: #{$border-1};
+	--shadow-1: #{$shadow-1};
 
-    --transition-1: #{$transition-1};
-    --transition-2: #{$transition-2};
+	--transition-1: #{$transition-1};
+	--transition-2: #{$transition-2};
 
-    --header-height: #{$header-height};
-    @include breakpoint-down(medium) {
-        --header-height: #{$header-height-small};
-    }
+	--header-height: #{$header-height};
+	@include breakpoint-down(medium) {
+		--header-height: #{$header-height-small};
+	}
 }
