@@ -3,6 +3,7 @@ import UserMedia from "./userMedia.js";
 import Hamburger from "./hamburger.js";
 import Dropdown from "./dropdown.js";
 import Slider from "./slider.js";
+import Modal from "./modal.js";
 
 const body = document.body;
 
@@ -127,4 +128,21 @@ let slider = new Slider(
 
 slider.slides.forEach((slide) => {
 	slide.addEventListener("click", () => slider.slide(slide));
+});
+
+let modal = new Modal(
+	document.querySelector(".js-modal"),
+	document.querySelector(".js-modal-open"),
+	document.querySelector(".js-modal-close"),
+	document.querySelector(".js-modal-product")
+);
+
+modal.product.value = document.querySelector(".js-product-name")?.innerText;
+
+modal.open.addEventListener("click", () => modal.toggle());
+
+modal.close.addEventListener("click", () => modal.toggle());
+
+window.addEventListener("click", (event) => {
+	if (event.target == modal.modal) modal.toggle();
 });

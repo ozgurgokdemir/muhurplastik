@@ -12,16 +12,11 @@
 
 		&:hover,
 		&:focus-visible {
-			// border-color: var(--color-blue-3);
-			// @include breakpoint(medium) {
-			// 	box-shadow: var(--shadow-1);
-			// }
 			.card__image {
 				width: 100%;
 			}
 			.card__info {
-				border-color: var(--color-blue-3);
-				background-color: var(--color-blue-3);
+				background-color: var(--color-blue-5);
 			}
 			.card__title {
 				color: var(--color-white-1);
@@ -51,7 +46,8 @@
 		transition: width var(--transition-1);
 	}
 	&__info {
-		background-color: var(--color-blue-3);
+		background-color: var(--color-blue-4);
+		transition: background-color var(--transition-1);
 	}
 	&__title {
 		margin: 0;

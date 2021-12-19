@@ -78,10 +78,10 @@
                     </div>
                 </div>
                 <div class="product__right">
-                    <h1 class="product__title">MP001 - Mühür Pensesi</h1>
+                    <h1 class="product__title js-product-name">MP001 - Mühür Pensesi</h1>
                     <div class="product__color"></div>
                     <div class="product__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad voluptate tempore expedita quisquam illum soluta tenetur ullam unde animi. Ducimus voluptatem est maiores quae cum, sed quasi iure? Iure, iusto.</div>
-                    <div class="product__order-button button">Sipariş Talebi</div>
+                    <div class="product__order-button button js-modal-open">Sipariş Talebi</div>
                 </div>
             </div>
         </section>
@@ -123,6 +123,25 @@
                 </div>
             </div>
         </section>
+        <div class="modal js-modal">
+            <div class="modal__container">
+                <div class="modal__header">
+                    <h2 class="modal__title">Sipariş Formu</h2>
+                    <button class="modal__close js-modal-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal__content">
+                    <form class="modal__form" action="https://formsubmit.co/rawthul.developer@gmail.com" method="POST">
+                        <input type="text" name="name" placeholder="Adınız" required>
+                        <input type="text" name="surname" placeholder="Soyadınız" required>
+                        <input type="tel" name="tel" placeholder="Telefon" required>
+                        <input type="email" name="email" placeholder="E-Posta" required>
+                        <textarea name="message" cols="40" rows="10" placeholder="Mesajınız" required></textarea>
+                        <input class="modal__product-name js-modal-product" type="text" name="product" value="" disabled>
+                        <input class="button" type="submit" value="Sipariş Talep Et">
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="footer">
         <div class="footer__top">

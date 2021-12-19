@@ -1,0 +1,88 @@
+@use "utilities" as *;
+
+.modal {
+	visibility: hidden;
+	display: grid;
+	place-items: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: rgba($color: #000000, $alpha: 0.7);
+
+	@include breakpoint(small) {
+		top: var(--header-height);
+		z-index: 999;
+	}
+
+	&.active {
+		visibility: visible;
+	}
+
+	&__container {
+		display: grid;
+		grid-template-rows: min-content 1fr;
+		width: 100%;
+		max-width: 48rem;
+		background-color: var(--color-white-1);
+		@include breakpoint-down(xsmall) {
+			min-height: 100%;
+		}
+	}
+
+	&__header {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.5rem 1.5rem 0 1.5rem;
+		@include breakpoint-down(medium) {
+			padding-top: 0;
+			height: var(--header-height);
+			border-bottom: var(--border-1);
+		}
+	}
+
+	&__title {
+		font-size: 2rem;
+		font-weight: 600;
+		color: var(--color-blue-4);
+	}
+
+	&__content {
+		width: 100%;
+		flex: 0 1 auto;
+		display: flex;
+		align-items: center;
+	}
+
+	&__form {
+		width: 100%;
+		padding: 1.5rem;
+
+		@include breakpoint-down(medium) {
+			gap: 1.5rem;
+		}
+		textarea {
+			height: 8rem;
+		}
+	}
+
+	&__product-name {
+		background-color: var(--color-white-2);
+		@include breakpoint-down(medium) {
+			order: -1;
+		}
+	}
+
+	&__close {
+		height: fit-content;
+		cursor: pointer;
+		i {
+			font-size: 1.5rem;
+			color: var(--color-blue-2);
+		}
+	}
+}

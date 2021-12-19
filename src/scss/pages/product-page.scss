@@ -9,7 +9,7 @@
 		> .container {
 			display: flex;
 			flex-direction: column;
-			gap: 2rem;
+			gap: 1.5rem;
 
 			@include breakpoint(large) {
 				flex-direction: row;
@@ -17,8 +17,7 @@
 			}
 		}
 		&__left {
-			max-height: calc(100vh - var(--header-height) - 6rem);
-			aspect-ratio: 4 / 3;
+			flex: 1.65;
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
@@ -27,15 +26,23 @@
 			}
 		}
 		&__right {
-			max-height: 100%;
+			flex: 1;
+			// min-width: 480px;
+			// max-height: 100%;
 			display: flex;
 			flex-direction: column;
+			// @include breakpoint-down(medium) {
+			// 	min-width: auto;
+			// 	max-width: 100%;
+			// }
 		}
 		&__image {
 			img {
 				aspect-ratio: 4 / 3;
 				border: var(--border-1);
 				background-color: #f3f6f9;
+				width: 100%;
+				height: 100%;
 			}
 		}
 		&__thumbnails {
@@ -48,6 +55,8 @@
 				gap: 1.25rem;
 			}
 			img {
+				width: 100%;
+				height: 100%;
 				aspect-ratio: 4 / 3;
 				border: var(--border-1);
 				cursor: pointer;
@@ -60,11 +69,12 @@
 		&__title {
 			font-size: 2rem;
 			font-weight: 600;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 			color: var(--color-blue-2);
 
 			@include breakpoint(large) {
 				font-size: 2.5rem;
+				margin-bottom: 1.5rem;
 			}
 		}
 		&__description {
@@ -92,7 +102,7 @@
 		}
 
 		&__title {
-			padding: 1.5rem 0;
+			padding-bottom: 1.5rem;
 			font-size: 2rem;
 			font-weight: 600;
 			text-align: center;
