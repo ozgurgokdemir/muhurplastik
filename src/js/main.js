@@ -2,8 +2,8 @@ import { isActive, targetHeight } from "./helper.js";
 import UserMedia from "./userMedia.js";
 import Hamburger from "./hamburger.js";
 import Dropdown from "./dropdown.js";
-import Slider from "./slider.js";
-import Modal from "./modal.js";
+// import Slider from "./slider.js";
+// import Modal from "./modal.js";
 
 const body = document.body;
 
@@ -121,28 +121,38 @@ dropdowns.forEach((element) => {
 	}
 });
 
-let slider = new Slider(
-	document.querySelector(".js-product-image-monitor img"),
-	document.querySelectorAll(".js-product-image-slides img")
-);
+const initiateSlider = (Slider) => {
+	let slider = new Slider(
+		document.querySelector(".js-product-image-monitor img"),
+		document.querySelectorAll(".js-product-image-slides img")
+	);
 
-slider.slides.forEach((slide) => {
-	slide.addEventListener("click", () => slider.slide(slide));
-});
+	slider.slides.forEach((slide) => {
+		slide.addEventListener("click", () => slider.slide(slide));
+	});
+};
 
-let modal = new Modal(
-	document.querySelector(".js-modal"),
-	document.querySelector(".js-modal-open"),
-	document.querySelector(".js-modal-close"),
-	document.querySelector(".js-modal-product")
-);
+const initiateModal = (Modal) => {
+	let modal = new Modal(
+		document.querySelector(".js-modal"),
+		document.querySelector(".js-modal-open"),
+		document.querySelector(".js-modal-close"),
+		document.querySelector(".js-modal-product")
+	);
 
-modal.product.value = document.querySelector(".js-product-name")?.innerText;
+	modal.product.value = document.querySelector(".js-product-name")?.innerText;
 
-modal.open.addEventListener("click", () => modal.toggle());
+	modal.open.addEventListener("click", () => modal.toggle());
 
-modal.close.addEventListener("click", () => modal.toggle());
+	modal.close.addEventListener("click", () => modal.toggle());
 
-window.addEventListener("click", (event) => {
-	if (event.target == modal.modal) modal.toggle();
-});
+	window.addEventListener("click", (event) => {
+		if (event.target == modal.modal) modal.toggle();
+	});
+};
+
+if (/urun\/*/.test(window.location.href)) {
+	import("./slider").then(({ default: Slider }) => initiateSlider(Slider));
+
+	import("./modal").then(({ default: Modal }) => initiateModal(Modal));
+}

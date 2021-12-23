@@ -25,12 +25,8 @@ export default class UserMedia {
 		this.current = this.getMedia();
 
 		this.device = this.getDevice();
-
-		this.log("Initiated");
 	}
 	update() {
-		let previousMedia = this.current;
-
 		this.width = window.innerWidth;
 
 		let media = this.getMedia();
@@ -41,8 +37,6 @@ export default class UserMedia {
 		}
 
 		this.device = this.getDevice();
-
-		if (previousMedia != media) this.log("Updated");
 	}
 	getMedia() {
 		if (this.width < this.breakpoints.small) {
@@ -65,14 +59,5 @@ export default class UserMedia {
 			default:
 				return "mobile";
 		}
-	}
-	log(operation) {
-		console.log(`Media is ${operation}`);
-		console.log("-> font size: " + this.fontSize);
-		console.log("-> breakpoints: " + this.breakpoints);
-		console.log("-> width: " + this.width);
-		console.log("-> previous: " + this.previous);
-		console.log("-> current: " + this.current);
-		console.log("-> device: " + this.device);
 	}
 }
