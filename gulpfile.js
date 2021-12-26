@@ -1,11 +1,19 @@
-const { src, dest, watch, series, parallel } = require("gulp");
+const { task, src, dest, watch, series, parallel } = require("gulp");
 
 const sass = require("gulp-sass")(require("sass"));
 const postcss = require("gulp-postcss");
 const purge = require("gulp-purgecss");
 const prefix = require("autoprefixer");
 const minify = require("cssnano");
+
+const merge = require("merge-stream");
+const rename = require("gulp-rename");
+
+const imageResize = require("gulp-image-resize");
 const imagemin = require("gulp-imagemin");
+const imageminWebp = require("imagemin-webp");
+const imageminPngquant = require("imagemin-pngquant");
+
 const browsersync = require("browser-sync").create();
 
 const webpack = require("webpack");
@@ -26,15 +34,46 @@ function jsTask() {
 		.pipe(dest("dist/js", { sourcemaps: "." }));
 }
 
-function imageTask() {
-	return src("src/images/*")
+function convertToWebp() {
+	const image = (size) => {
+		return src("src/images/*.png")
+			.pipe(imageResize({ imageMagick: true, width: size }))
+			.pipe(imagemin([imageminWebp({ quality: 70 })]))
+			.pipe(
+				rename({
+					suffix: size !== null ? `_${size}w` : "",
+					extname: ".webp",
+				})
+			)
+			.pipe(dest("dist/images"));
+	};
+	return merge([480, 960].map(image));
+}
+
+function optimizePNG() {
+	return src("src/images/*.png")
+		.pipe(imageResize({ imageMagick: true, width: 960 }))
 		.pipe(
 			imagemin([
-				imagemin.gifsicle({ interlaced: true }),
-				imagemin.mozjpeg({ quality: 75, progressive: true }),
-				imagemin.optipng({ optimizationLevel: 5 }),
+				imageminPngquant({
+					quality: [0.6, 0.8],
+					speed: 1,
+				}),
+			])
+		)
+		.pipe(dest("dist/images"));
+}
+
+function optimizeSVG() {
+	return src("src/images/*.svg")
+		.pipe(
+			imagemin([
 				imagemin.svgo({
-					plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+					plugins: [
+						{
+							removeViewBox: false,
+						},
+					],
 				}),
 			])
 		)
@@ -59,12 +98,12 @@ function browsersyncReload(callback) {
 function watchTask() {
 	watch(
 		["*.html", "src/js/**/*.js", "src/scss/**/*.scss", "src/images/*"],
-		parallel(jsTask, scssTask, imageTask, browsersyncReload)
+		parallel(jsTask, scssTask, browsersyncReload)
 	);
 }
 
 exports.default = series(
-	parallel(jsTask, scssTask, imageTask),
+	parallel(jsTask, scssTask, optimizePNG, optimizeSVG, convertToWebp),
 	browsersyncServe,
 	watchTask
 );
