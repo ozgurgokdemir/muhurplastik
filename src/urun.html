@@ -1,28 +1,21 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-
     <title>Plastik Mühür - MühürPlastik</title>
-
-    <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
-
-    <link rel="canonical" href="https://muhurplastik.com/">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="dist/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- <script src="https://kit.fontawesome.com/bf1ee2c0f4.js" crossorigin="anonymous"></script> -->
-    <script defer src="dist/js/script.js"></script>
+    <script defer src="js/script.js"></script>
 </head>
 <body>
     <header class="header">
@@ -34,7 +27,7 @@
             </button>
             <div class="header__logo">
                 <a href="index.html" title="MühürPlastik">
-                    <img src="dist/images/muhurplastik-logo.svg" alt="MühürPlastik">
+                    <img src="images/muhurplastik-logo.svg" alt="MühürPlastik">
                 </a>
             </div>
             <div class="header__navigation js-hamburger-menu">
@@ -69,106 +62,87 @@
             </div>
         </div>
     </header>
-    <main class="main-content">
-        <section class="section hero">
-            <div class="slide">
-                <div class="container">
-                    <div class="hero__top">
-                        <img src="" alt="">
-                    </div>
-                    <div class="hero__bottom">
-                        <h2 class="hero__title">Lorem ipsum dolor sit.</h2>
-                        <p class="hero__description">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                        <a class="button" href="kategoriler.html">Tüm Ürünler</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section categories">
+    <main class="product-page">
+       	<section class="section product">
             <div class="container">
-                <h2 class="categories__title">Güvenlik Mühürleri</h2>
-                <div class="categories__cards">
+                <div class="product__left">
+                    <div class="product__image js-product-image-monitor">
+                        <img src="images/MP002_2.png" alt="" loading="lazy">
+                    </div>
+                    <div class="product__thumbnails js-product-image-slides">
+                        <img class="active" src="images/MP002_2.png" alt="" loading="lazy">
+                        <img src="images/MP002_3.png" alt="" loading="lazy">
+                        <img src="images/MP002.png" alt="" loading="lazy">
+                        <img src="images/MP002_2.png" alt="" loading="lazy">
+                        <img src="images/MP002_3.png" alt="" loading="lazy">
+                    </div>
+                </div>
+                <div class="product__right">
+                    <h1 class="product__title js-product-name">MP001 - Mühür Pensesi</h1>
+                    <div class="product__color"></div>
+                    <div class="product__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad voluptate tempore expedita quisquam illum soluta tenetur ullam unde animi. Ducimus voluptatem est maiores quae cum, sed quasi iure? Iure, iusto.</div>
+                    <button class="product__order-button button button--primary js-modal-open">Sipariş Talebi</button>
+                </div>
+            </div>
+        </section>
+        <section class="section similar-products">
+            <div class="container">
+                <h2 class="similar-products__title">Benzer Ürünler</h2>
+                <a class="similar-products__show button button--secondary" href="">Tüm Ürünler<i class="icon fas fa-arrow-right"></i></a>
+                <div class="similar-products__cards">
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="dist/images/MP012.png" 
-                                srcset="dist/images/MP012_480w.webp 960w, 
-                                        dist/images/MP012_960w.webp 1920w"
-                                alt="" loading="lazy">
+                                <img class="card__image" src="images/MP013-B.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
-                                <h3 class="card__title">Lorem, ipsum dolor.</h3>
+                                <h3 class="card__title">MP001</h3>
                             </div>
                         </a>
                     </div>
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="dist/images/MP013.png" 
-                                srcset="dist/images/MP013_480w.webp 960w, 
-                                        dist/images/MP013_960w.webp 1920w"
-                                alt="" loading="lazy">
+                                <img class="card__image" src="images/MP013-B.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
-                                <h3 class="card__title">Lorem, ipsum dolor.</h3>
+                                <h3 class="card__title">MP001</h3>
                             </div>
                         </a>
                     </div>
                     <div class="card">
                         <a href="">
                             <div class="card__media">
-                                <img class="card__image" src="dist/images/MP016.png"
-                                srcset="dist/images/MP016_480w.webp 960w, 
-                                        dist/images/MP016_960w.webp 1920w"
-                                alt="" loading="lazy">
+                                <img class="card__image" src="images/MP013-B.png" alt="" loading="lazy">
                             </div>
                             <div class="card__info">
-                                <h3 class="card__title">Lorem, ipsum dolor.</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="">
-                            <div class="card__media">
-                                <img class="card__image" src="dist/images/MP003_2.png"
-                                srcset="dist/images/MP003_2_480w.webp 960w, 
-                                        dist/images/MP003_2_960w.webp 1920w"
-                                alt="" loading="lazy">
-                            </div>
-                            <div class="card__info">
-                                <h3 class="card__title">Lorem, ipsum dolor.</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="">
-                            <div class="card__media">
-                                <img class="card__image" src="dist/images/MP005.png" 
-                                srcset="dist/images/MP005_480w.webp 960w, 
-                                        dist/images/MP005_960w.webp 1920w"
-                                alt="" loading="lazy">
-                            </div>
-                            <div class="card__info">
-                                <h3 class="card__title">Lorem, ipsum dolor.</h3>
+                                <h3 class="card__title">MP001</h3>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="section contact">
-            <div class="contact__form">
-                <h3 class="contact__title">İletişim Formu</h3>
-                <form action="https://formsubmit.co/rawthul.developer@gmail.com" method="POST">
-                    <input type="text" name="name" placeholder="Adınız" required>
-                    <input type="text" name="surname" placeholder="Soyadınız" required>
-                    <input type="tel" name="tel" placeholder="Telefon" required>
-                    <input type="email" name="email" placeholder="E-Posta" required>
-                    <textarea name="message" cols="40" rows="10" placeholder="Mesajınız" required></textarea>
-                    <input class="button" type="submit" value="Gönder">
-                </form>
+        <div class="modal js-modal">
+            <div class="modal__container">
+                <div class="modal__header">
+                    <h2 class="modal__title">Sipariş Formu</h2>
+                    <button class="modal__close js-modal-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal__content">
+                    <form class="modal__form" action="https://formsubmit.co/rawthul.developer@gmail.com" method="POST" 
+                    onsubmit="this.querySelector('.js-modal-product').disabled = false">
+                        <input type="text" name="Ad" placeholder="Adınız" required>
+                        <input type="text" name="Soyad" placeholder="Soyadınız" required>
+                        <input type="tel" name="Telefon" placeholder="Telefon" required>
+                        <input type="email" name="Email" placeholder="E-Posta" required>
+                        <textarea name="Mesaj" cols="40" rows="10" placeholder="Mesajınız" required></textarea>
+                        <input class="modal__product-name js-modal-product" type="text" name="Ürün" disabled>
+                        <input class="button button--primary" type="submit" value="Sipariş Talep Et">
+                    </form>
+                </div>
             </div>
-        </section>
+        </div>
     </main>
     <footer class="footer">
         <div class="footer__top">
@@ -176,7 +150,7 @@
                 <div class="footer__brand">
                     <div class="footer__logo">
                         <a href="index.html" title="MühürPlastik">
-                            <img src="dist/images/muhurplastik-logo.svg" alt="MühürPlastik" draggable="false">
+                            <img src="images/muhurplastik-logo.svg" alt="MühürPlastik" draggable="false">
                         </a>
                     </div>
                     <div class="footer__info">

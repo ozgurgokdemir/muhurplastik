@@ -27,14 +27,8 @@
 		}
 		&__right {
 			flex: 1;
-			// min-width: 480px;
-			// max-height: 100%;
 			display: flex;
 			flex-direction: column;
-			// @include breakpoint-down(medium) {
-			// 	min-width: auto;
-			// 	max-width: 100%;
-			// }
 		}
 		&__image {
 			img {
@@ -86,6 +80,7 @@
 		&__order-button {
 			margin-top: auto;
 			font-size: 1.25rem;
+			line-height: 1.5;
 		}
 	}
 

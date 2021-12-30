@@ -1,100 +1,104 @@
 @use "utilities" as *;
 
 .category-page {
-  background-color: var(--color-white-1);
-  > .container {
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    @include breakpoint(large) {
-      padding-top: 4rem;
-      flex-direction: row;
-      gap: 5rem;
-    }
-  }
-  &__categories {
-    width: 100%;
-    max-width: rem(480);
-    height: fit-content;
-    flex-shrink: 0;
-    border-bottom: var(--border-1);
-    @include breakpoint(large) {
-      width: rem(280);
-    }
-    &:not(.active) {
-      ul {
-        height: 0;
-      }
-    }
-    .chevron {
-      width: 1rem;
-      margin: 0;
-      span {
-        width: 90%;
-      }
-    }
-  }
-  &__category-button {
-    width: 100%;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--color-blue-2);
-    user-select: none;
-    cursor: pointer;
-    @include breakpoint(large) {
-      margin-bottom: 0.875rem;
-    }
-  }
-  &__category-list {
-    padding-left: 0.875rem;
-    overflow: hidden;
-    transition: height var(--transition-1);
-  }
-  &__category {
-    &:not(:last-child) {
-      border-bottom: var(--border-1);
-    }
-    a {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.125rem 0 1.125rem rem(2);
-      white-space: nowrap;
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--color-blue-2);
-      transition: color var(--transition-1);
-      @include breakpoint(large) {
-        //padding: 1.25rem 0 1.25rem rem(2);
-      }
-      &:hover,
-      &:focus-visible {
-        color: var(--color-blue-6);
-      }
-      &:focus-visible {
-        outline-width: 1px;
-        outline-style: solid;
-        outline-offset: -1px;
-      }
-      i {
-        width: 1.25rem;
-        aspect-ratio: 1 / 1;
-        display: grid;
-        place-items: center;
-        font-size: 1rem;
-      }
-    }
-  }
-  &__products {
-    height: fit-content;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 1.5rem;
-  }
+	background-color: var(--color-white-1);
+	> .container {
+		padding-top: 2rem;
+		padding-bottom: 4rem;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		@include breakpoint(large) {
+			padding-top: 4rem;
+			flex-direction: row;
+			gap: 5rem;
+		}
+	}
+	&__categories {
+		width: 100%;
+		max-width: rem(480);
+		height: fit-content;
+		flex-shrink: 0;
+		border-bottom: var(--border-1);
+		@include breakpoint(large) {
+			width: rem(280);
+		}
+		&:not(.active) {
+			ul {
+				height: 0;
+			}
+		}
+		.chevron {
+			width: 1rem;
+			margin: 0;
+			span {
+				width: 90%;
+			}
+		}
+	}
+	&__category-button {
+		width: 100%;
+		margin-bottom: 0.5rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 2rem;
+		font-weight: 600;
+		color: var(--color-blue-2);
+		user-select: none;
+		cursor: pointer;
+		@include breakpoint(large) {
+			margin-bottom: 0.875rem;
+		}
+	}
+	&__category-list {
+		padding-left: 0.875rem;
+		overflow: hidden;
+		transition: height var(--transition-1);
+	}
+	&__category {
+		&:not(:last-child) {
+			border-bottom: var(--border-1);
+		}
+		a {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1.125rem 0 1.125rem rem(2);
+			white-space: nowrap;
+			font-size: 1.125rem;
+			font-weight: 600;
+			color: var(--color-blue-2);
+			transition: color var(--transition-1);
+			@include breakpoint(large) {
+				//padding: 1.25rem 0 1.25rem rem(2);
+			}
+			&:hover,
+			&:focus-visible {
+				color: var(--color-blue-6);
+			}
+			&:focus-visible {
+				outline-width: 1px;
+				outline-style: solid;
+				outline-offset: -1px;
+			}
+			i {
+				width: 1.25rem;
+				aspect-ratio: 1 / 1;
+				display: grid;
+				place-items: center;
+				font-size: 1rem;
+			}
+		}
+	}
+	&__products {
+		width: 100%;
+		height: fit-content;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+		gap: 1.5rem;
+		@include breakpoint-down(xsmall) {
+			grid-template-columns: 1fr;
+		}
+	}
 }
