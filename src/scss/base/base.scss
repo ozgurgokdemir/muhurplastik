@@ -1,87 +1,87 @@
 @use "utilities" as *;
 
 html {
-  font-size: 100%;
-  box-sizing: border-box;
+	font-size: 100%;
+	box-sizing: border-box;
 
-  &::-webkit-scrollbar-track {
-    background-color: var(--color-white-1);
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-3);
-  }
-  &::-webkit-scrollbar {
-    width: 0.75rem;
-  }
+	&::-webkit-scrollbar-track {
+		background-color: var(--color-white-1);
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--color-blue-3);
+	}
+	&::-webkit-scrollbar {
+		width: 0.75rem;
+	}
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
-  -webkit-tap-highlight-color: transparent;
+	box-sizing: inherit;
+	-webkit-tap-highlight-color: transparent;
 }
 
 body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  color: var(--color-blue-1);
-  background-color: var(--color-white-2);
+	min-width: 320px;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	color: var(--color-blue-1);
+	background-color: var(--color-white-1);
 }
 
 ul,
 ol {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 img {
-  max-width: 100%;
-  display: block;
+	max-width: 100%;
+	display: block;
 }
 
 textarea {
-  resize: vertical;
+	resize: vertical;
 }
 
 .container {
-  width: 100%;
-  max-width: 90rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  margin: 0 auto;
+	width: 100%;
+	max-width: 90rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	margin: 0 auto;
 }
 
 .noscroll {
-  @include breakpoint-down(xsmall) {
-    overflow: hidden;
-  }
+	@include breakpoint-down(xsmall) {
+		overflow: hidden;
+	}
 }
 
 .overlay {
-  background: rgba(#000, 0.5);
-  position: absolute;
-  top: rem(55);
-  visibility: hidden;
-  overflow: hidden;
+	background: rgba(#000, 0.5);
+	position: absolute;
+	top: rem(55);
+	visibility: hidden;
+	overflow: hidden;
 }
 
 [hidden] {
-  display: none !important;
+	display: none !important;
 }
 
 .hide-for-desktop {
-  @include breakpoint(large) {
-    display: none !important;
-  }
+	@include breakpoint(large) {
+		display: none !important;
+	}
 }
 
 .hide-for-mobile {
-  @include breakpoint-down(medium) {
-    display: none !important;
-  }
+	@include breakpoint-down(medium) {
+		display: none !important;
+	}
 }

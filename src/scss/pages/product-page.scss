@@ -1,7 +1,6 @@
 @use "utilities" as *;
 
 .product-page {
-	background-color: var(--color-white-1);
 	.product {
 		@include breakpoint-down(medium) {
 			padding-top: 1.5rem;
@@ -34,7 +33,7 @@
 			img {
 				aspect-ratio: 4 / 3;
 				border: var(--border-1);
-				background-color: #f3f6f9;
+				background-color: var(--color-select);
 				width: 100%;
 				height: 100%;
 			}
@@ -56,7 +55,7 @@
 				cursor: pointer;
 
 				&.active {
-					background-color: #f3f6f9;
+					background-color: var(--color-select);
 				}
 			}
 		}
@@ -86,6 +85,7 @@
 
 	.similar-products {
 		background-color: var(--color-white-2);
+		box-shadow: inset 0 rem(1) 0 0 var(--color-white-3);
 
 		> .container {
 			display: grid;

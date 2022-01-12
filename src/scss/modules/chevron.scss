@@ -1,38 +1,36 @@
 @use "utilities" as *;
 
 .chevron {
-  width: rem(12);
-  height: 0.6rem;
-  position: relative;
-  border-collapse: separate;
-  border-spacing: 0;
+	width: rem(12);
+	height: 0.6rem;
+	position: relative;
 
-  span {
-    width: 92%;
-    height: rem(3);
-    position: absolute;
-    background-color: var(--color-blue-2);
-    transition: transform var(--transition-1);
+	span {
+		width: 92%;
+		height: rem(3);
+		position: absolute;
+		background-color: var(--color-blue-2);
+		transition: transform var(--transition-1);
 
-    &:first-child {
-      transform-origin: left top;
-      transform: translateY(rem(3)) rotate(0deg);
-      left: 0;
-    }
-    &:last-child {
-      transform-origin: right top;
-      transform: translateY(rem(3)) rotate(0deg);
-      right: 0;
-    }
-  }
-  &.active {
-    span {
-      &:first-child {
-        transform: rotate(45deg);
-      }
-      &:last-child {
-        transform: rotate(-45deg);
-      }
-    }
-  }
+		&:first-child {
+			transform-origin: left top;
+			transform: translateY(rem(3)) rotate(0deg);
+			left: 0;
+		}
+		&:last-child {
+			transform-origin: right top;
+			transform: translateY(rem(3)) rotate(0deg);
+			right: 0;
+		}
+	}
+	&.active {
+		span {
+			&:first-child {
+				transform: rotate(45deg);
+			}
+			&:last-child {
+				transform: rotate(-45deg);
+			}
+		}
+	}
 }

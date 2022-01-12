@@ -130,8 +130,8 @@
 			place-items: center;
 			position: relative;
 			font-size: 1.25rem;
-			color: #979dac;
-			background-color: #001845;
+			color: var(--color-manatee);
+			background-color: var(--color-blue-2);
 			z-index: 0;
 			transition: color var(--transition-1);
 			&:hover,

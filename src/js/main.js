@@ -2,8 +2,6 @@ import { isActive, targetHeight } from "./helper.js";
 import UserMedia from "./userMedia.js";
 import Hamburger from "./hamburger.js";
 import Dropdown from "./dropdown.js";
-// import Slider from "./slider.js";
-// import Modal from "./modal.js";
 
 const body = document.body;
 
@@ -151,8 +149,7 @@ const initiateModal = (Modal) => {
 	});
 };
 
-if (/urun\/*/.test(window.location.href)) {
+if (/(?<=urun).*/.test(window.location.href)) {
 	import("./slider").then(({ default: Slider }) => initiateSlider(Slider));
-
 	import("./modal").then(({ default: Modal }) => initiateModal(Modal));
 }

@@ -9,12 +9,11 @@
 	left: 0;
 	z-index: 1000;
 	overflow-y: auto;
-	background-color: rgba($color: #000000, $alpha: 0.7);
+	background-color: var(--color-overlay);
 
 	@include breakpoint(small) {
 		top: var(--header-height);
 		z-index: 999;
-		// display: grid;
 		place-items: center;
 	}
 

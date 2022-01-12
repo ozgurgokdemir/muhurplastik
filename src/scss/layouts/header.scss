@@ -1,100 +1,98 @@
 @use "utilities" as *;
 
 .header {
-  min-width: 320px;
-  height: var(--header-height);
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1000;
-  background-color: var(--color-white-1);
-  border-bottom: var(--border-1);
-  //box-shadow: var(--shadow-1);
+	min-width: 320px;
+	height: var(--header-height);
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: var(--color-white-1);
+	border-bottom: var(--border-1);
 
-  > .container {
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	> .container {
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 
-    @include breakpoint-down(medium) {
-      padding: 0;
-    }
-  }
+		@include breakpoint-down(medium) {
+			padding: 0;
+		}
+	}
 
-  &__hamburger {
-    display: flex;
-    flex-shrink: 0;
-    width: 4.25rem;
-    height: 100%;
-    cursor: pointer;
-    position: relative;
+	&__hamburger {
+		display: flex;
+		flex-shrink: 0;
+		width: 4.25rem;
+		height: 100%;
+		cursor: pointer;
+		position: relative;
 
-    span {
-      height: rem(3.6);
-      position: absolute;
-      left: 1.25rem;
-      right: 1.25rem;
-      background-color: var(--color-blue-4);
-      transition-property: transform, opacity, top;
-      transition-duration: 150ms;
-      transition-timing-function: ease-in-out;
+		span {
+			height: rem(3.6);
+			position: absolute;
+			left: 1.25rem;
+			right: 1.25rem;
+			background-color: var(--color-blue-4);
+			transition-property: transform, opacity, top;
+			transition-duration: 150ms;
+			transition-timing-function: var(--transition-timing);
 
-      &:nth-child(1) {
-        top: 1.25rem;
-      }
-      &:nth-child(2) {
-        top: calc(50% - rem(3.6) / 2);
-      }
-      &:nth-child(3) {
-        top: calc(100% - rem(3.6) - 1.25rem);
-      }
-    }
-  }
+			&:nth-child(1) {
+				top: 1.25rem;
+			}
+			&:nth-child(2) {
+				top: calc(50% - rem(3.6) / 2);
+			}
+			&:nth-child(3) {
+				top: calc(100% - rem(3.6) - 1.25rem);
+			}
+		}
+	}
 
-  &__logo {
-    height: 100%;
-    padding: 1rem 1.25rem;
-    @include breakpoint(large) {
-      padding: 1.875rem 0;
-      display: flex;
-      flex-shrink: 0;
-    }
-    a {
-      height: 100%;
-    }
-    img {
-      height: 98%;
-    }
-  }
+	&__logo {
+		height: 100%;
+		padding: 1rem 1.25rem;
+		@include breakpoint(large) {
+			padding: 1.875rem 0;
+			display: flex;
+			flex-shrink: 0;
+		}
+		a {
+			height: 100%;
+		}
+		img {
+			height: 98%;
+		}
+	}
 
-  &__navigation {
-    height: 100%;
-    @include breakpoint-down(medium) {
-      width: 100%;
-      height: calc(100vh - var(--header-height));
-      position: fixed;
-      top: var(--header-height);
-      left: 0;
-      transform: translateX(-100%);
-      z-index: 999;
-      //transition: transform var(--transition-2);
+	&__navigation {
+		height: 100%;
+		@include breakpoint-down(medium) {
+			width: 100%;
+			height: calc(100vh - var(--header-height));
+			position: fixed;
+			top: var(--header-height);
+			left: 0;
+			transform: translateX(-100%);
+			z-index: 999;
 
-      &.active {
-        transform: translateX(0);
-      }
+			&.active {
+				transform: translateX(0);
+			}
 
-      &::before {
-        content: "";
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        background-color: var(--color-blue-1);
-        opacity: 0.3;
-        backdrop-filter: blur(4px);
-      }
-    }
-  }
+			&::before {
+				content: "";
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				z-index: -1;
+				background-color: var(--color-blue-1);
+				opacity: 0.3;
+				backdrop-filter: blur(rem(4));
+			}
+		}
+	}
 }

@@ -1,3 +1,7 @@
+@use "functions" as *;
+
+$font-family: "Mukta", sans-serif;
+
 $color-blue-1: #001233;
 $color-blue-2: #001845;
 $color-blue-3: #002855;
@@ -7,14 +11,22 @@ $color-blue-6: #0466c8;
 $color-blue-7: #3ea6ff;
 $color-manatee: #979dac;
 $color-white-1: #ffffff;
-$color-white-2: #fafafa;
+$color-white-2: #fcfcfc;
+$color-white-3: #f2f2f2;
 $color-gray-1: #757575;
+$color-overlay: rgba(0, 0, 0, 0.7);
+$color-select: #f3f6f9;
 
-$border-1: 1px solid hsl(0, 0%, 90%);
-$shadow-1: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+$border-width: rem(1);
+$border-style: solid;
+$border-color: hsl(0, 0%, 90%);
 
-$transition-1: 0.2s ease-in-out;
-$transition-2: 0.3s ease-in-out;
+$shadow-offset: 0 0 rem(10) 0;
+$shadow-color: rgba(0, 0, 0, 0.1);
 
-$header-height: calc(6rem + 1px);
-$header-height-small: calc(4rem + 1px);
+$transition-duration-200: 200ms;
+$transition-duration-300: 300ms;
+$transition-timing: ease-in-out;
+
+$header-height: calc(6rem + rem(1));
+$header-height-small: calc(4rem + rem(1));

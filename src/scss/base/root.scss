@@ -1,6 +1,8 @@
 @use "utilities" as *;
 
 :root {
+	--font-family: #{$font-family};
+
 	--color-blue-1: #{$color-blue-1};
 	--color-blue-2: #{$color-blue-2};
 	--color-blue-3: #{$color-blue-3};
@@ -11,13 +13,25 @@
 	--color-manatee: #{$color-manatee};
 	--color-white-1: #{$color-white-1};
 	--color-white-2: #{$color-white-2};
+	--color-white-3: #{$color-white-3};
 	--color-gray-1: #{$color-gray-1};
+	--color-overlay: #{$color-overlay};
+	--color-select: #{$color-select};
 
-	--border-1: #{$border-1};
-	--shadow-1: #{$shadow-1};
+	--border-width: #{$border-width};
+	--border-style: #{$border-style};
+	--border-color: #{$border-color};
+	--border-1: var(--border-width) var(--border-style) var(--border-color);
 
-	--transition-1: #{$transition-1};
-	--transition-2: #{$transition-2};
+	--shadow-offset: #{$shadow-offset};
+	--shadow-color: #{$shadow-color};
+	--shadow-1: var(--shadow-offset) var(--shadow-color);
+
+	--transition-duration-200: #{$transition-duration-200};
+	--transition-duration-300: #{$transition-duration-300};
+	--transition-timing: #{$transition-timing};
+	--transition-1: var(--transition-duration-200) var(--transition-timing);
+	--transition-2: var(--transition-duration-300) var(--transition-timing);
 
 	--header-height: #{$header-height};
 	@include breakpoint-down(medium) {

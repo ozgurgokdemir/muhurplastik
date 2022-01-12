@@ -10,7 +10,7 @@ button {
 .button {
 	display: inline-block;
 	padding: 0.875rem 3.875rem;
-	border: rem(2) solid var(--color-blue-2);
+	border: rem(2) var(--border-style) var(--color-blue-2);
 	text-align: center;
 	cursor: pointer;
 
@@ -21,8 +21,8 @@ button {
 	outline: none;
 	white-space: nowrap;
 
-	transition-duration: 200ms;
-	transition-timing-function: ease-in-out;
+	transition-duration: var(--transition-duration-200);
+	transition-timing-function: var(--transition-timing);
 
 	&--primary {
 		color: var(--color-white-1);
@@ -57,7 +57,7 @@ button {
 	padding: 0;
 	border: none;
 	background-color: transparent;
-	font-family: "Mukta", sans-serif;
+	font-family: var(--font-family);
 	letter-spacing: 0.03125rem;
 	cursor: pointer;
 }
