@@ -1,17 +1,20 @@
 import { isActive } from "./helper.js";
 
-let fontSize = window
+const fontSize = window
 	.getComputedStyle(document.documentElement)
 	.getPropertyValue("font-size")
 	.replace("px", "");
 
 export default class Hamburger {
-	constructor(button, menu) {
+	constructor(button, menu, { duration, property, timing }) {
+		this.transition = `${duration} ${property} ${timing}`;
+		this.duration = duration;
 		this.button = button;
 		this.menu = menu;
+		this.menu.style.transition = this.transition;
 		this.bars = button.querySelectorAll("span");
 	}
-	toggle(duration = 300) {
+	toggle() {
 		if (isActive(this.menu)) {
 			this.bars[0].style.top =
 				"calc(50% - " + 3.6 / fontSize + "rem / 2)";
@@ -23,7 +26,7 @@ export default class Hamburger {
 					this.bars[0].style.transform = "rotate(-45deg)";
 					this.bars[2].style.transform = "rotate(45deg)";
 				}
-			}, duration / 2);
+			}, this.duration / 2);
 		} else {
 			this.bars[0].style.transform = "rotate(0deg)";
 			this.bars[2].style.transform = "rotate(0deg)";
@@ -34,7 +37,19 @@ export default class Hamburger {
 					this.bars[2].style.top =
 						"calc(100% - " + 3.6 / fontSize + "rem - 1.25rem)";
 				}
-			}, duration / 2);
+			}, this.duration / 2);
 		}
+	}
+	reset() {
+		this.menu.classList.remove("active");
+		this.menu.style.removeProperty("transform");
+		this.menu.style.removeProperty("transition");
+		this.bars.forEach((bar) => {
+			bar.style.removeProperty("transform");
+			bar.style.removeProperty("top");
+			bar.style.removeProperty("opacity");
+		});
+
+		setTimeout(() => (this.menu.style.transition = this.transition), 0);
 	}
 }

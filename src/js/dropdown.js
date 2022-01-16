@@ -1,12 +1,12 @@
-import { isActive } from "./helper.js";
+import { isActive, targetHeight } from "./helper.js";
 
 export default class Dropdown {
-	constructor(container, button, hover, dropdown, height, chevron) {
+	constructor({ container, button, hover, dropdown, chevron }) {
 		this.container = container;
 		this.button = button;
 		this.hover = hover;
 		this.dropdown = dropdown;
-		this.height = height;
+		this.height = targetHeight(dropdown);
 		this.chevron = chevron;
 	}
 	toggle(duration = 200) {
@@ -28,5 +28,12 @@ export default class Dropdown {
 				}
 			}, duration);
 		}
+	}
+	reset() {
+		this.container.classList.remove("active");
+		this.button?.classList.remove("active");
+		this.hover?.classList.remove("active");
+		this.chevron.forEach((element) => element?.classList.add("active"));
+		this.height = targetHeight(this.dropdown);
 	}
 }

@@ -1,72 +1,61 @@
-import { isActive, targetHeight } from "./helper.js";
+import { isActive } from "./helper.js";
 import UserMedia from "./userMedia.js";
 import Hamburger from "./hamburger.js";
 import Dropdown from "./dropdown.js";
 
 const body = document.body;
 
-let userMedia = new UserMedia();
+const userMedia = new UserMedia();
 userMedia.initiate();
 
 const hamburger = new Hamburger(
 	document.querySelector(".js-hamburger-toggle"),
-	document.querySelector(".js-hamburger-menu")
+	document.querySelector(".js-hamburger-menu"),
+	{
+		property: "transform",
+		duration: "300ms",
+		timing: "ease-in-out",
+	}
 );
 
-const dropdowns = [];
-document.querySelectorAll(".js-dropdown-container").forEach((element) => {
-	dropdowns.push(
-		new Dropdown(
-			element,
-			element.querySelector(".js-dropdown-button"),
-			element.querySelector(".js-dropdown-hover"),
-			element.querySelector(".js-dropdown"),
-			targetHeight(element.querySelector(".js-dropdown")),
-			element.querySelectorAll(".chevron")
-		)
-	);
-});
+const dropdowns = (() => {
+	const container = document.querySelectorAll(".js-dropdown-container");
+	const array = [...container].map((element) => {
+		return {
+			container: element,
+			button: element.querySelector(".js-dropdown-button"),
+			hover: element.querySelector(".js-dropdown-hover"),
+			dropdown: element.querySelector(".js-dropdown"),
+			chevron: element.querySelectorAll(".chevron"),
+		};
+	});
+	return array.map((object) => new Dropdown(object));
+})();
 
-if (userMedia.device == "mobile")
-	hamburger.menu.style.transition = "transform 300ms ease-in-out";
+// if (userMedia.device == "mobile")
+// 	hamburger.menu.style.transition = "transform 300ms ease-in-out";
 
 hamburger.button.addEventListener("click", () => {
 	hamburger.menu.classList.toggle("active");
 	body.classList.toggle("noscroll");
-	hamburger.toggle(300);
+	hamburger.toggle();
 });
 
-let resetStyles = () => {
-	// reset dropdown for desktop
-	dropdowns.forEach((element) => {
-		element.container.classList.remove("active");
-		element.button?.classList.remove("active");
-		element.hover?.classList.remove("active");
-		element.chevron.forEach((element) => element?.classList.add("active"));
-		element.height = targetHeight(element.dropdown);
-	});
+const resetStyles = () => {
+	// reset dropdowns global
+	dropdowns.forEach((dropdown) => dropdown.reset());
+
 	if (userMedia.device == "desktop") {
-		// reset hamburger menu
-		hamburger.menu.classList.remove("active");
-		hamburger.menu.style.removeProperty("transform");
-		hamburger.menu.style.removeProperty("transition");
-		// reset hamburger button
-		hamburger.button.querySelectorAll("span").forEach((bar) => {
-			bar.style.removeProperty("transform");
-			bar.style.removeProperty("top");
-			bar.style.removeProperty("opacity");
-		});
+		// reset hamburger menu for desktop
+		hamburger.reset();
 	} else {
-		hamburger.menu.style.removeProperty("transition");
-		setTimeout(() => {
-			hamburger.menu.style.transition = "transform 300ms ease-in-out";
-		}, 300);
+		// reset hamburger menu for mobile
+		hamburger.reset();
 	}
-	console.log("Styles are Reset");
 };
 
 window.addEventListener("resize", () => {
-	let deviceBeforeUpdate = userMedia.device;
+	const deviceBeforeUpdate = userMedia.device;
 	// update current media
 	userMedia.update();
 	// reset styles when breakpoint
@@ -78,7 +67,7 @@ window.addEventListener("click", (event) => {
 	if (isActive(hamburger.menu) && event.target == hamburger.menu) {
 		hamburger.menu.classList.remove("active");
 		body.classList.remove("noscroll");
-		hamburger.toggle(300);
+		hamburger.toggle();
 	}
 });
 
@@ -120,7 +109,7 @@ dropdowns.forEach((element) => {
 });
 
 const initiateSlider = (Slider) => {
-	let slider = new Slider(
+	const slider = new Slider(
 		document.querySelector(".js-product-image-monitor img"),
 		document.querySelectorAll(".js-product-image-slides img")
 	);
@@ -131,14 +120,14 @@ const initiateSlider = (Slider) => {
 };
 
 const initiateModal = (Modal) => {
-	let modal = new Modal(
+	const modal = new Modal(
 		document.querySelector(".js-modal"),
 		document.querySelector(".js-modal-open"),
 		document.querySelector(".js-modal-close"),
 		document.querySelector(".js-modal-product")
 	);
 
-	modal.product.value = document.querySelector(".js-product-name")?.innerText;
+	modal.product.value = document.querySelector(".js-product-name").innerText;
 
 	modal.open.addEventListener("click", () => modal.toggle());
 
