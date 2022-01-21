@@ -1,10 +1,9 @@
-export let isActive = (target) =>
-	target.classList.contains("active") ? true : false;
+export const isActive = (target) => target.classList.contains('active');
 
-export let targetHeight = (target) => {
-	setTimeout(() => {}, 0);
-	target.style.height = "auto";
-	let height = target.clientHeight + "px";
-	target.style.removeProperty("height");
-	return height;
+export const targetHeight = (target) => {
+  setTimeout(() => {}, 0);
+  target.style.height = 'auto';
+  const height = `${target.clientHeight}px`;
+  target.style.removeProperty('height');
+  return height;
 };

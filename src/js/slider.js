@@ -1,17 +1,18 @@
 export default class Slider {
-	constructor(monitor, slides) {
-		this.monitor = monitor;
-		this.slides = slides;
-		this.previous = undefined;
-		this.current = slides[0];
-	}
-	slide(slide) {
-		this.current.classList.remove("active");
-		this.previous = this.current;
-		this.current = slide;
+  constructor({ monitor, slides }) {
+    this.monitor = monitor;
+    this.slides = [...slides];
+    this.previous = undefined;
+    this.current = [...slides].at(0);
+  }
 
-		const slideAttr = slide.getAttribute("src");
-		this.monitor.setAttribute("src", slideAttr);
-		this.current.classList.add("active");
-	}
+  slide(slide) {
+    this.current.classList.remove('active');
+    this.previous = this.current;
+    this.current = slide;
+
+    const slideAttr = slide.getAttribute('src');
+    this.monitor.setAttribute('src', slideAttr);
+    this.current.classList.add('active');
+  }
 }
