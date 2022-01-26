@@ -8,27 +8,32 @@ const { body } = document;
 const userMedia = new UserMedia();
 userMedia.initiate();
 
+const hamburgerToggle = document.querySelector('.js-hamburger-toggle');
+const hamburgerMenu = document.querySelector('.js-hamburger-menu');
+const hamburgerTransition = {
+  property: 'transform',
+  duration: '300ms',
+  timing: 'ease-in-out',
+};
+
 const hamburger = new Hamburger(
-  document.querySelector('.js-hamburger-toggle'),
-  document.querySelector('.js-hamburger-menu'),
-  {
-    property: 'transform',
-    duration: '300ms',
-    timing: 'ease-in-out',
-  }
+  hamburgerToggle,
+  hamburgerMenu,
+  hamburgerTransition
 );
 
-const dropdowns = (() => {
-  const container = document.querySelectorAll('.js-dropdown-container');
-  const array = [...container].map((element) => ({
+const dropdownContainers = document.querySelectorAll('.js-dropdown-container');
+
+const getDropdown = (element) =>
+  new Dropdown({
     container: element,
     button: element.querySelector('.js-dropdown-button'),
     hover: element.querySelector('.js-dropdown-hover'),
     dropdown: element.querySelector('.js-dropdown'),
     chevron: element.querySelectorAll('.chevron'),
-  }));
-  return array.map((object) => new Dropdown(object));
-})();
+  });
+
+const dropdowns = [...dropdownContainers].map(getDropdown);
 
 hamburger.button.addEventListener('click', () => {
   hamburger.menu.classList.toggle('active');
@@ -66,41 +71,57 @@ window.addEventListener('click', (event) => {
   }
 });
 
+const dropdownHandler = (element, callback) => {
+  if (userMedia.device !== 'desktop') return;
+  callback(element);
+};
+
+const showDropdown = (element) => {
+  if (isActive(element.container)) return;
+  element.toggle(200);
+};
+const hideDropdown = (element) => {
+  if (!isActive(element.container)) return;
+  element.toggle(200);
+};
+
+const focusInDropdown = (element) => {
+  if (!element.container.matches(':focus-within')) return;
+  showDropdown(element);
+};
+const focusOutDropdown = (element) => {
+  if (element.container.matches(':focus-within')) return;
+  hideDropdown(element);
+};
+
+const addDropdownEventListeners = (element) => {
+  // open dropdown when hovered
+  element.hover.addEventListener(
+    'mouseenter',
+    dropdownHandler.bind(this, element, showDropdown)
+  );
+  // close dropdown when mouse leave
+  element.container.addEventListener(
+    'mouseleave',
+    dropdownHandler.bind(this, element, hideDropdown)
+  );
+  // open dropdown when focused
+  element.container.addEventListener(
+    'focusin',
+    dropdownHandler.bind(this, element, focusInDropdown)
+  );
+  // close dropdown when focus out
+  element.container.addEventListener(
+    'focusout',
+    dropdownHandler.bind(this, element, focusOutDropdown)
+  );
+};
+
 dropdowns.forEach((element) => {
-  if (element.button !== undefined) {
-    // toggle dropdown when clicked
-    element.button.addEventListener('click', () => element.toggle(200));
-  }
-  if (element.hover !== undefined) {
-    // open dropdown when hovered
-    element.hover.addEventListener('mouseenter', () => {
-      if (userMedia.device === 'desktop' && !isActive(element.container))
-        element.toggle(200);
-    });
-    // close dropdown when mouse leave
-    element.container.addEventListener('mouseleave', () => {
-      if (userMedia.device === 'desktop' && isActive(element.container))
-        element.toggle(200);
-    });
-    // open dropdown when focused
-    element.container.addEventListener('focusin', () => {
-      if (
-        userMedia.device === 'desktop' &&
-        !isActive(element.container) &&
-        element.container.matches(':focus-within')
-      )
-        element.toggle(200);
-    });
-    // close dropdown when focus out
-    element.container.addEventListener('focusout', () => {
-      if (
-        userMedia.device === 'desktop' &&
-        isActive(element.container) &&
-        !element.container.matches(':focus-within')
-      )
-        element.toggle(200);
-    });
-  }
+  // toggle dropdown when clicked
+  element.button?.addEventListener('click', () => element.toggle(200));
+  // toggle dropdown when hovered or focused
+  if (element.hover !== null) addDropdownEventListeners(element);
 });
 
 const initiateSlider = (Slider) => {

@@ -3,7 +3,7 @@ export default class Slider {
     this.monitor = monitor;
     this.slides = [...slides];
     this.previous = undefined;
-    this.current = [...slides].at(0);
+    this.current = slides.at(0);
   }
 
   slide(slide) {
