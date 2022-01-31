@@ -3,7 +3,8 @@ export default class Slider {
     this.monitor = monitor;
     this.slides = [...slides];
     this.previous = undefined;
-    this.current = slides.at(0);
+    // eslint-disable-next-line prefer-destructuring
+    this.current = slides[0];
   }
 
   slide(slide) {

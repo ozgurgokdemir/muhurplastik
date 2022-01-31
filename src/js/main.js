@@ -22,6 +22,21 @@ const hamburger = new Hamburger(
   hamburgerTransition
 );
 
+const toggleHamburger = () => {
+  hamburger.menu.classList.toggle('active');
+  body.classList.toggle('noscroll');
+  hamburger.toggle();
+};
+
+const closeHamburger = (e) => {
+  if (!isActive(hamburger.menu)) return;
+  if (e.target === hamburger.menu) toggleHamburger();
+};
+
+hamburger.button.addEventListener('click', toggleHamburger);
+
+hamburger.menu.addEventListener('click', closeHamburger);
+
 const dropdownContainers = document.querySelectorAll('.js-dropdown-container');
 
 const getDropdown = (element) =>
@@ -34,42 +49,6 @@ const getDropdown = (element) =>
   });
 
 const dropdowns = [...dropdownContainers].map(getDropdown);
-
-hamburger.button.addEventListener('click', () => {
-  hamburger.menu.classList.toggle('active');
-  body.classList.toggle('noscroll');
-  hamburger.toggle();
-});
-
-const resetStyles = () => {
-  // reset dropdowns global
-  dropdowns.forEach((dropdown) => dropdown.reset());
-
-  if (userMedia.device === 'desktop') {
-    // reset hamburger menu for desktop
-    hamburger.reset();
-  } else {
-    // reset hamburger menu for mobile
-    hamburger.reset();
-  }
-};
-
-window.addEventListener('resize', () => {
-  const deviceBeforeUpdate = userMedia.device;
-  // update current media
-  userMedia.update();
-  // reset styles when breakpoint
-  if (deviceBeforeUpdate !== userMedia.device) resetStyles();
-});
-
-window.addEventListener('click', (event) => {
-  // close menu when clicked to overlay
-  if (isActive(hamburger.menu) && event.target === hamburger.menu) {
-    hamburger.menu.classList.remove('active');
-    body.classList.remove('noscroll');
-    hamburger.toggle();
-  }
-});
 
 const dropdownHandler = (element, callback) => {
   if (userMedia.device !== 'desktop') return;
@@ -124,6 +103,27 @@ dropdowns.forEach((element) => {
   if (element.hover !== null) addDropdownEventListeners(element);
 });
 
+const resetStyles = () => {
+  // reset dropdowns global
+  dropdowns.forEach((dropdown) => dropdown.reset());
+
+  if (userMedia.device === 'desktop') {
+    // reset hamburger menu for desktop
+    hamburger.reset();
+  } else {
+    // reset hamburger menu for mobile
+    hamburger.reset();
+  }
+};
+
+window.addEventListener('resize', () => {
+  const deviceBeforeUpdate = userMedia.device;
+  // update current media
+  userMedia.update();
+  // reset styles when breakpoint
+  if (deviceBeforeUpdate !== userMedia.device) resetStyles();
+});
+
 const initiateSlider = (Slider) => {
   const slider = new Slider({
     monitor: document.querySelector('.js-product-image-monitor img'),
@@ -154,7 +154,7 @@ const initiateModal = (Modal) => {
   });
 };
 
-if (/(?<=urun).*/.test(window.location.href)) {
+if (document.querySelector('main.product-page')) {
   import('./slider').then(({ default: Slider }) => initiateSlider(Slider));
   import('./modal').then(({ default: Modal }) => initiateModal(Modal));
 }
