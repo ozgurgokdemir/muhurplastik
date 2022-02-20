@@ -6,16 +6,19 @@ const fontSize = window
   .replace('px', '');
 
 export default class Hamburger {
-  constructor(button, menu, { duration, property, timing }) {
+  constructor({ button, menu, transition: { duration, property, timing } }) {
     this.transition = `${duration} ${property} ${timing}`;
     this.duration = duration;
     this.button = button;
     this.menu = menu;
     this.menu.style.transition = this.transition;
     this.bars = button.querySelectorAll('span');
+    this.addEventListeners();
   }
 
   toggle() {
+    this.menu.classList.toggle('active');
+    document.body.classList.toggle('noscroll');
     if (isActive(this.menu)) {
       this.bars[0].style.top = `calc(50% - ${3.6 / fontSize}rem / 2)`;
       this.bars[1].style.opacity = '0';
@@ -41,6 +44,11 @@ export default class Hamburger {
     }
   }
 
+  close(e) {
+    if (!isActive(this.menu)) return;
+    if (e.target === this.menu) this.toggle();
+  }
+
   reset() {
     this.menu.classList.remove('active');
     this.menu.style.removeProperty('transform');
@@ -52,5 +60,10 @@ export default class Hamburger {
     });
 
     setTimeout(() => (this.menu.style.transition = this.transition), 0);
+  }
+
+  addEventListeners() {
+    this.button.addEventListener('click', this.toggle.bind(this));
+    this.menu.addEventListener('click', this.close.bind(this));
   }
 }
