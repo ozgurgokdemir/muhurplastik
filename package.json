@@ -58,6 +58,15 @@
 	"eslintConfig": {
 		"extends": [
 			"wesbos"
-		]
+		],
+		"rules": {
+			"prefer-destructuring": [
+				"error",
+				{
+					"object": true,
+					"array": false
+				}
+			]
+		}
 	}
 }

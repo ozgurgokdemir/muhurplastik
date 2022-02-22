@@ -14,10 +14,12 @@ export default class Modal {
   }
 
   addEventListeners() {
-    this.openButton.addEventListener('click', () => this.toggle());
-    this.closeButton.addEventListener('click', () => this.toggle());
     window.addEventListener('click', (e) => {
-      if (e.target === this.modal) this.toggle();
+      const conditions =
+        e.target === this.modal ||
+        e.target === this.openButton ||
+        this.closeButton.contains(e.target);
+      if (conditions) this.toggle();
     });
   }
 }

@@ -1,45 +1,12 @@
-import UserMedia from './userMedia.js';
-import Hamburger from './hamburger.js';
-import Dropdown from './dropdown.js';
+import UserMedia from './UserMedia.js';
+import Hamburger from './Hamburger.js';
+import Dropdown from './Dropdown.js';
 
-const userMedia = new UserMedia();
-
-const hamburger = new Hamburger({
-  button: document.querySelector('.js-hamburger-toggle'),
-  menu: document.querySelector('.js-hamburger-menu'),
-  transition: {
-    property: 'transform',
-    duration: '300ms',
-    timing: 'ease-in-out',
-  },
-});
+const hamburger = new Hamburger();
 
 const dropdownContainers = document.querySelectorAll('.js-dropdown-container');
 
-const getDropdown = (element) =>
-  new Dropdown({
-    container: element,
-    button: element.querySelector('.js-dropdown-button'),
-    hover: element.querySelector('.js-dropdown-hover'),
-    dropdown: element.querySelector('.js-dropdown'),
-    chevron: element.querySelectorAll('.chevron'),
-    userMedia,
-  });
-
-const dropdowns = [...dropdownContainers].map(getDropdown);
-
-const resetComponents = () => {
-  dropdowns.forEach((dropdown) => dropdown.reset());
-  hamburger.reset();
-};
-
-const handleResize = () => {
-  const deviceBeforeUpdate = userMedia.device;
-  userMedia.update();
-  if (deviceBeforeUpdate !== userMedia.device) resetComponents();
-};
-
-window.addEventListener('resize', handleResize);
+const dropdowns = [...dropdownContainers].map((e) => new Dropdown(e));
 
 const handleGallery = (Gallery) =>
   new Gallery({
@@ -60,3 +27,16 @@ if (document.querySelector('main.product-page')) {
   import('./gallery').then(({ default: Gallery }) => handleGallery(Gallery));
   import('./modal').then(({ default: Modal }) => handleModal(Modal));
 }
+
+const resetComponents = () => {
+  hamburger.reset();
+  dropdowns.forEach((dropdown) => dropdown.reset());
+};
+
+const handleBreakpoint = () => {
+  const deviceBeforeUpdate = UserMedia.device;
+  UserMedia.update();
+  if (deviceBeforeUpdate !== UserMedia.device) resetComponents();
+};
+
+window.addEventListener('resize', handleBreakpoint);

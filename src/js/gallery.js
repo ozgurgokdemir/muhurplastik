@@ -3,7 +3,6 @@ export default class Gallery {
     this.image = image;
     this.thumbnails = [...thumbnails];
     this.previousImage = undefined;
-    // eslint-disable-next-line prefer-destructuring
     this.currentImage = thumbnails[0];
     this.currentImage.classList.add('active');
     this.addEventListeners();

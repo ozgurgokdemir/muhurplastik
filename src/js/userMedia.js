@@ -14,19 +14,21 @@ const DEVICE_ENUMS = {
 };
 
 export default class UserMedia {
-  constructor() {
+  static {
     this.width = window.innerWidth;
     this.media = this.getMedia();
     this.device = this.getDevice();
+    this.fontSize = this.getFontSize();
   }
 
-  update() {
+  static update() {
     this.width = window.innerWidth;
     this.media = this.getMedia();
     this.device = this.getDevice();
+    this.fontSize = this.getFontSize();
   }
 
-  getMedia() {
+  static getMedia() {
     if (this.width < breakpoints.sm) return MEDIA_ENUMS.XS;
     if (this.width < breakpoints.md) return MEDIA_ENUMS.SM;
     if (this.width < breakpoints.lg) return MEDIA_ENUMS.MD;
@@ -35,7 +37,7 @@ export default class UserMedia {
     return MEDIA_ENUMS.XXL;
   }
 
-  getDevice() {
+  static getDevice() {
     switch (this.media) {
       case MEDIA_ENUMS.XXL:
       case MEDIA_ENUMS.XL:
@@ -44,5 +46,12 @@ export default class UserMedia {
       default:
         return DEVICE_ENUMS.MOBILE;
     }
+  }
+
+  static getFontSize() {
+    return window
+      .getComputedStyle(document.documentElement)
+      .getPropertyValue('font-size')
+      .replace('px', '');
   }
 }
