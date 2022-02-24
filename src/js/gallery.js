@@ -1,9 +1,9 @@
 export default class Gallery {
-  constructor({ image, thumbnails }) {
-    this.image = image;
-    this.thumbnails = [...thumbnails];
+  constructor() {
+    this.image = document.querySelector('.js-product-image img');
+    this.thumbnails = document.querySelectorAll('.js-product-thumbnails img');
     this.previousImage = undefined;
-    this.currentImage = thumbnails[0];
+    this.currentImage = this.thumbnails[0];
     this.currentImage.classList.add('active');
     this.addEventListeners();
   }

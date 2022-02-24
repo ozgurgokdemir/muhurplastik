@@ -1,5 +1,5 @@
 import UserMedia from './UserMedia.js';
-import { isActive } from './helper.js';
+import { isActive } from './utility.js';
 
 const transition = {
   button: {

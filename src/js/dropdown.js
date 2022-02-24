@@ -1,4 +1,4 @@
-import { isActive, targetHeight } from './helper.js';
+import { isActive, targetHeight } from './utility.js';
 import UserMedia from './UserMedia.js';
 
 export default class Dropdown {
@@ -72,7 +72,8 @@ export default class Dropdown {
   addEventListeners() {
     this.button?.addEventListener('click', this.toggle);
 
-    if (!this.hover || UserMedia.device === 'mobile') return;
+    if (UserMedia.device === UserMedia.DEVICE_ENUMS.MOBILE || !this.hover)
+      return;
 
     this.container.addEventListener('mouseenter', this.handleMouse, {
       capture: true,

@@ -1,10 +1,11 @@
 export default class Modal {
-  constructor({ modal, openButton, closeButton, product, productName }) {
-    this.modal = modal;
-    this.openButton = openButton;
-    this.closeButton = closeButton;
-    this.product = product;
-    this.product.value = productName;
+  constructor() {
+    this.modal = document.querySelector('.js-modal');
+    this.openButton = document.querySelector('.js-modal-open');
+    this.closeButton = document.querySelector('.js-modal-close');
+    this.product = document.querySelector('.js-modal-product');
+    this.product.value = document.querySelector('.js-product-name').innerText;
+    this.handleClick = this.handleClick.bind(this);
     this.addEventListeners();
   }
 
@@ -13,13 +14,15 @@ export default class Modal {
     document.body.classList.toggle('noscroll');
   }
 
+  handleClick(e) {
+    const isConditionsMet =
+      e.target === this.modal ||
+      e.target === this.openButton ||
+      this.closeButton.contains(e.target);
+    if (isConditionsMet) this.toggle();
+  }
+
   addEventListeners() {
-    window.addEventListener('click', (e) => {
-      const conditions =
-        e.target === this.modal ||
-        e.target === this.openButton ||
-        this.closeButton.contains(e.target);
-      if (conditions) this.toggle();
-    });
+    window.addEventListener('click', this.handleClick);
   }
 }

@@ -19,6 +19,8 @@ export default class UserMedia {
     this.media = this.getMedia();
     this.device = this.getDevice();
     this.fontSize = this.getFontSize();
+    this.MEDIA_ENUMS = MEDIA_ENUMS;
+    this.DEVICE_ENUMS = DEVICE_ENUMS;
   }
 
   static update() {
@@ -29,11 +31,11 @@ export default class UserMedia {
   }
 
   static getMedia() {
-    if (this.width < breakpoints.sm) return MEDIA_ENUMS.XS;
-    if (this.width < breakpoints.md) return MEDIA_ENUMS.SM;
-    if (this.width < breakpoints.lg) return MEDIA_ENUMS.MD;
-    if (this.width < breakpoints.xl) return MEDIA_ENUMS.LG;
-    if (this.width < breakpoints.xxl) return MEDIA_ENUMS.XL;
+    if (this.width < breakpoints.getSM(this.fontSize)) return MEDIA_ENUMS.XS;
+    if (this.width < breakpoints.getMD(this.fontSize)) return MEDIA_ENUMS.SM;
+    if (this.width < breakpoints.getLG(this.fontSize)) return MEDIA_ENUMS.MD;
+    if (this.width < breakpoints.getXL(this.fontSize)) return MEDIA_ENUMS.LG;
+    if (this.width < breakpoints.getXXL(this.fontSize)) return MEDIA_ENUMS.XL;
     return MEDIA_ENUMS.XXL;
   }
 
