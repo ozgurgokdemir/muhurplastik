@@ -1,27 +1,29 @@
 @use "functions" as *;
 
 $breakpoints-up: (
-  "small": em(480),
-  "medium": em(768),
-  "large": em(992),
-  "xlarge": em(1200),
+	"small": em(480),
+	"medium": em(768),
+	"large": em(992),
+	"xlarge": em(1200),
+	"xxlarge": em(1400),
 );
 
 $breakpoints-down: (
-  "xsmall": em(479),
-  "small": em(767),
-  "medium": em(991),
-  "large": em(1199),
+	"xsmall": em(479),
+	"small": em(767),
+	"medium": em(991),
+	"large": em(1199),
+	"xlarge": em(1399),
 );
 
 @mixin breakpoint($size) {
-  @media (min-width: map-get($breakpoints-up, $size)) {
-    @content;
-  }
+	@media (min-width: map-get($breakpoints-up, $size)) {
+		@content;
+	}
 }
 
 @mixin breakpoint-down($size) {
-  @media (max-width: map-get($breakpoints-down, $size)) {
-    @content;
-  }
+	@media (max-width: map-get($breakpoints-down, $size)) {
+		@content;
+	}
 }

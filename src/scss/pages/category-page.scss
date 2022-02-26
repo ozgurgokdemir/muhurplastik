@@ -59,12 +59,17 @@
 		&:not(:last-child) {
 			border-bottom: var(--border-1);
 		}
-		a {
+		&.active button {
+			color: var(--color-blue-6);
+		}
+		button {
+			width: 100%;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			padding: 1.125rem 0 1.125rem rem(2);
 			white-space: nowrap;
+			font-family: var(--font-family);
 			font-size: 1.125rem;
 			font-weight: 600;
 			color: var(--color-blue-2);
@@ -91,10 +96,13 @@
 		width: 100%;
 		height: fit-content;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+		grid-template-columns: 1fr;
 		gap: 1.5rem;
-		@include breakpoint-down(xsmall) {
-			grid-template-columns: 1fr;
+		@include breakpoint(medium) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@include breakpoint(xlarge) {
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 }

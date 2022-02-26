@@ -7,6 +7,9 @@ const hamburger = new Hamburger();
 const dropdownContainers = document.querySelectorAll('.js-dropdown-container');
 const dropdowns = [...dropdownContainers].map((e) => new Dropdown(e));
 
+if (document.querySelector('main.category-page')) {
+  import('./Category');
+}
 if (document.querySelector('main.product-page')) {
   import('./Gallery').then(({ default: Gallery }) => new Gallery());
   import('./Modal').then(({ default: Modal }) => new Modal());

@@ -5,6 +5,7 @@ button {
 	padding: 0;
 	border: none;
 	background-color: transparent;
+	cursor: pointer;
 }
 
 .button {
@@ -12,7 +13,6 @@ button {
 	padding: 0.875rem 3.875rem;
 	border: rem(2) var(--border-style) var(--color-blue-2);
 	text-align: center;
-	cursor: pointer;
 
 	font-family: inherit;
 	font-size: 1.125rem;
