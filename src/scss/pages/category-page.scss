@@ -1,4 +1,4 @@
-@use "utilities" as *;
+@use 'utilities' as *;
 
 .category-page {
 	> .container {
@@ -59,7 +59,7 @@
 		&:not(:last-child) {
 			border-bottom: var(--border-1);
 		}
-		&.active button {
+		&.active * {
 			color: var(--color-blue-6);
 		}
 		button {
@@ -91,6 +91,14 @@
 				font-size: 1rem;
 			}
 		}
+	}
+	&__product-count {
+		width: 1.25rem;
+		aspect-ratio: 1 / 1;
+		display: grid;
+		place-items: center;
+		font-size: 1rem;
+		color: var(--color-manatee);
 	}
 	&__products {
 		width: 100%;

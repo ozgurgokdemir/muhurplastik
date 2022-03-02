@@ -3,8 +3,10 @@ export default class Modal {
     this.modal = document.querySelector('.js-modal');
     this.openButton = document.querySelector('.js-modal-open');
     this.closeButton = document.querySelector('.js-modal-close');
+    this.productName = document.querySelector('.js-product-name').innerText;
+    this.productId = document.querySelector('.js-product-id').innerText;
     this.product = document.querySelector('.js-modal-product');
-    this.product.value = document.querySelector('.js-product-name').innerText;
+    this.product.value = `${this.productId} - ${this.productName}`;
     this.handleClick = this.handleClick.bind(this);
     this.addEventListeners();
   }

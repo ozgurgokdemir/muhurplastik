@@ -1,12 +1,23 @@
 import productList from './productList';
 
 const container = document.querySelector('.category-page__products');
-// const categoryList = document.querySelectorAll('.category-page__category-list');
 const categories = document.querySelectorAll('.category-page__category');
 
 let currentCategory = 'all';
 
-const displayProducts = (products) => {
+const filterProducts = (targetCategory) =>
+  targetCategory === 'all'
+    ? productList
+    : productList.filter((product) => product.category === targetCategory);
+
+const toggleActive = (e) => {
+  categories.forEach((category) => {
+    category.classList.remove('active');
+  });
+  e.classList.add('active');
+};
+
+const displayProductCards = (products) => {
   container.innerHTML = products
     .map(
       (product) => `
@@ -27,26 +38,27 @@ const displayProducts = (products) => {
     .join('');
 };
 
-const toggleActive = (e) => {
-  categories.forEach((category) => {
-    category.classList.remove('active');
+const displayProductCounters = (productCategories) => {
+  productCategories.forEach((category) => {
+    const button = category.querySelector('button');
+    const counter = category.querySelector('.category-page__product-count');
+    const targetCategory = button.dataset.category;
+    const products = filterProducts(targetCategory);
+    counter.textContent = products.length;
   });
-  e.classList.add('active');
 };
 
-displayProducts(productList);
 toggleActive(categories[0]);
+displayProductCards(productList);
+displayProductCounters(categories);
 
 function handleClick() {
   const targetCategory = this.querySelector('button').dataset.category;
   if (targetCategory === currentCategory) return;
-  const products =
-    targetCategory === 'all'
-      ? productList
-      : productList.filter((product) => product.category === targetCategory);
-  displayProducts(products);
-  toggleActive(this);
+  const filteredProducts = filterProducts(targetCategory);
   currentCategory = targetCategory;
+  displayProductCards(filteredProducts);
+  toggleActive(this);
 }
 
 categories.forEach((category) =>

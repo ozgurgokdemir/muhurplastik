@@ -8,7 +8,7 @@
     <title>Plastik Mühür - MühürPlastik</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600&display=swap" rel="stylesheet">
@@ -78,10 +78,15 @@
                     </div>
                 </div>
                 <div class="product__right">
-                    <h1 class="product__title js-product-name">MP001 - Mühür Pensesi</h1>
-                    <div class="product__color"></div>
-                    <div class="product__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad voluptate tempore expedita quisquam illum soluta tenetur ullam unde animi. Ducimus voluptatem est maiores quae cum, sed quasi iure? Iure, iusto.</div>
-                    <button class="product__order-button button button--primary js-modal-open">Sipariş Talebi</button>
+                    <div class="product__title">
+                        <div class="product__placeholder js-product-id">MP001</div>
+                        <h1 class="product__name js-product-name">Mühür Pensesi</h1>
+                    </div>
+                    <div class="product__about">
+                        <div class="product__placeholder">AÇIKLAMA</div>
+                        <div class="product__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad voluptate tempore expedita quisquam illum soluta tenetur ullam unde animi. Ducimus voluptatem est maiores quae cum, sed quasi iure? Iure, iusto.</div>
+                    </div>
+                    <button class="product__order-button button button--primary js-modal-open"><i class="fas fa-shopping-cart icon"></i>Sipariş Talebi</button>
                 </div>
             </div>
         </section>
@@ -138,7 +143,7 @@
                         <input type="email" name="Email" placeholder="E-Posta" required>
                         <textarea name="Mesaj" cols="40" rows="10" placeholder="Mesajınız" required></textarea>
                         <input class="modal__product-name js-modal-product" type="text" name="Ürün" disabled>
-                        <input class="button button--primary" type="submit" value="Sipariş Talep Et">
+                        <button class="button button--primary" type="submit">Sipariş Talep Et</button>
                     </form>
                 </div>
             </div>
