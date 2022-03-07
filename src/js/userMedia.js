@@ -15,19 +15,26 @@ const DEVICE_ENUMS = {
 
 export default class UserMedia {
   static {
-    this.width = window.innerWidth;
-    this.media = this.getMedia();
-    this.device = this.getDevice();
-    this.fontSize = this.getFontSize();
     this.MEDIA_ENUMS = MEDIA_ENUMS;
     this.DEVICE_ENUMS = DEVICE_ENUMS;
+    this.width = window.innerWidth;
+    this.fontSize = this.getFontSize();
+    this.media = this.getMedia();
+    this.device = this.getDevice();
   }
 
   static update() {
     this.width = window.innerWidth;
+    this.fontSize = this.getFontSize();
     this.media = this.getMedia();
     this.device = this.getDevice();
-    this.fontSize = this.getFontSize();
+  }
+
+  static getFontSize() {
+    return window
+      .getComputedStyle(document.documentElement)
+      .getPropertyValue('font-size')
+      .replace('px', '');
   }
 
   static getMedia() {
@@ -48,12 +55,5 @@ export default class UserMedia {
       default:
         return DEVICE_ENUMS.MOBILE;
     }
-  }
-
-  static getFontSize() {
-    return window
-      .getComputedStyle(document.documentElement)
-      .getPropertyValue('font-size')
-      .replace('px', '');
   }
 }
