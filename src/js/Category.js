@@ -1,21 +1,46 @@
-import productList from './productList';
+import productList from './product-list';
 
 const container = document.querySelector('.category-page__products');
-const categories = document.querySelectorAll('.category-page__category');
+const categoryList = document.querySelector('.category-page__category-list');
 
-let currentCategory = 'all';
+const getCategories = (list) =>
+  list
+    .map(({ category }) => category)
+    .filter(
+      (category, index, array) =>
+        array.indexOf(category) === index && category !== undefined
+    );
 
-const filterProducts = (targetCategory) =>
-  targetCategory === 'all'
-    ? productList
-    : productList.filter((product) => product.category === targetCategory);
+const getCategoryHTML = (category) => `
+  <li class="category-page__category" data-category="${category}">
+    <button type="button">
+      ${category}
+      <i class="fas fa-plus icon"></i>
+    </button>
+  </li>`;
 
-const toggleActive = (e) => {
-  categories.forEach((category) => {
+const displayProductCategories = (categoryArray) => {
+  const categoriesHTML = categoryArray
+    .map((category) => getCategoryHTML(category))
+    .join('');
+  categoryList.innerHTML = `
+    ${getCategoryHTML('Tüm Ürünler')}
+    ${categoriesHTML}
+  `;
+};
+
+const categories = getCategories(productList);
+displayProductCategories(categories);
+
+const toggleActive = (element, array) => {
+  array.forEach((category) => {
     category.classList.remove('active');
   });
-  e.classList.add('active');
+  element.classList.add('active');
 };
+
+const categoryItems = categoryList.querySelectorAll('.category-page__category');
+toggleActive(categoryItems[0], categoryItems);
 
 const displayProductCards = (products) => {
   container.innerHTML = products
@@ -38,29 +63,24 @@ const displayProductCards = (products) => {
     .join('');
 };
 
-const displayProductCounters = (productCategories) => {
-  productCategories.forEach((category) => {
-    const button = category.querySelector('button');
-    const counter = category.querySelector('.category-page__product-count');
-    const targetCategory = button.dataset.category;
-    const products = filterProducts(targetCategory);
-    counter.textContent = products.length;
-  });
+displayProductCards(productList);
+
+let currentCategory = 'Tüm Ürünler';
+
+const filterProducts = (targetCategory) =>
+  targetCategory === 'Tüm Ürünler'
+    ? productList
+    : productList.filter((product) => product.category === targetCategory);
+
+const handleClick = (element) => {
+  const targetCategory = element.dataset.category;
+  if (targetCategory === currentCategory) return;
+  const products = filterProducts(targetCategory);
+  currentCategory = targetCategory;
+  displayProductCards(products);
+  toggleActive(element, categoryItems);
 };
 
-toggleActive(categories[0]);
-displayProductCards(productList);
-displayProductCounters(categories);
-
-function handleClick() {
-  const targetCategory = this.querySelector('button').dataset.category;
-  if (targetCategory === currentCategory) return;
-  const filteredProducts = filterProducts(targetCategory);
-  currentCategory = targetCategory;
-  displayProductCards(filteredProducts);
-  toggleActive(this);
-}
-
-categories.forEach((category) =>
-  category.addEventListener('click', handleClick)
+categoryItems.forEach((categoryItem) =>
+  categoryItem.addEventListener('click', handleClick.bind(this, categoryItem))
 );
