@@ -22,11 +22,6 @@
 		@include breakpoint(large) {
 			width: rem(280);
 		}
-		&:not(.active) {
-			ul {
-				height: 0;
-			}
-		}
 		.chevron {
 			width: 1rem;
 			margin: 0;

@@ -1,6 +1,8 @@
 import { isActive, targetHeight } from './utility.js';
 import UserMedia from './UserMedia.js';
 
+const isFirstToggle = true;
+
 export default class Dropdown {
   constructor(container) {
     this.container = container;
@@ -29,6 +31,7 @@ export default class Dropdown {
 
   hide() {
     this.toggleActive();
+    if (isFirstToggle) this.height = targetHeight(this.dropdown);
     this.dropdown.style.height = this.height;
     setTimeout(() => {
       this.dropdown.style.height = '0px';
@@ -59,8 +62,12 @@ export default class Dropdown {
       this.hide();
   }
 
+  updateHeight() {
+    this.height = targetHeight(this.dropdown);
+  }
+
   reset() {
-    this.container.classList.remove('active');
+    // this.container.classList.remove('active');
     this.button?.classList.remove('active');
     this.hover?.classList.remove('active');
     this.chevron.forEach((element) => element?.classList.add('active'));
