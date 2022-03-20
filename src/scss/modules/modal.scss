@@ -27,6 +27,8 @@
 		width: 100%;
 		max-width: 48rem;
 		background-color: var(--color-white-1);
+    border-radius: var(--border-radius);
+
 		@include breakpoint-down(xsmall) {
 			min-height: 100%;
 		}

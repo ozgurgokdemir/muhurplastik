@@ -21,6 +21,7 @@
 	--border-width: #{$border-width};
 	--border-style: #{$border-style};
 	--border-color: #{$border-color};
+  --border-radius: #{$border-radius};
 	--border-1: var(--border-width) var(--border-style) var(--border-color);
 
 	--shadow-offset: #{$shadow-offset};

@@ -15,7 +15,7 @@
 				width: 100%;
 			}
 			.card__info {
-				background-color: var(--color-blue-5);
+        background-position: 0% 100%;
 			}
 			.card__title {
 				color: var(--color-white-1);
@@ -36,6 +36,8 @@
 		overflow: hidden;
 		position: relative;
 		border: var(--border-1);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 		border-bottom: none;
 	}
 	&__image {
@@ -45,8 +47,12 @@
 		transition: width var(--transition-1);
 	}
 	&__info {
-		background-color: var(--color-blue-4);
-		transition: background-color var(--transition-1);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    background: linear-gradient(45deg, var(--color-blue-4) 0%, var(--color-blue-5) 50%, var(--color-blue-4) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 100%;
+    transition: background-position var(--transition-1);
 	}
 	&__title {
 		margin: 0;

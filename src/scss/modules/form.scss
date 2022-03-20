@@ -17,6 +17,7 @@ textarea {
 	padding: 0.75rem 0.5rem 0.75rem 0.75rem;
 	font: 400 0.875rem/1.5 var(--font-family);
 	border: var(--border-1);
+  border-radius: var(--border-radius);
 	&:focus {
 		outline: rem(1) solid var(--color-blue-7);
 	}

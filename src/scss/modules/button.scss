@@ -10,8 +10,8 @@ button {
 
 .button {
 	display: inline-block;
-	padding: 0.875rem 3.875rem;
-	border: rem(2) var(--border-style) var(--color-blue-2);
+  padding: 1rem 4rem;
+  border-radius: var(--border-radius);
 	text-align: center;
 
 	font-family: inherit;
@@ -26,22 +26,24 @@ button {
 
 	&--primary {
 		color: var(--color-white-1);
-		background-color: var(--color-blue-2);
-
-		transition-property: color, background-color;
-
+    background: linear-gradient(45deg, var(--color-blue-4) 0%, var(--color-blue-5) 50%, var(--color-blue-4) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 100%;
+    transition-property: background-position;
 		&:focus,
 		&:hover {
-			color: var(--color-blue-2);
-			background-color: var(--color-white-1);
+      color: var(--color-white-1);
+      background-position: 0% 100%;
 		}
 	}
 
 	&--secondary {
+    padding: 0.875rem 3.875rem;
+    border: rem(2) var(--border-style) var(--color-blue-2);
 		color: var(--color-blue-4);
 		border-color: var(--color-blue-4);
 
-		transition-property: color, background-color, border-color;
+		transition-property: background-color, border-color;
 
 		&:focus,
 		&:hover {
