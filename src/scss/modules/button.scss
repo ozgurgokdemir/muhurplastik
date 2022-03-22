@@ -24,6 +24,11 @@ button {
 	transition-duration: var(--transition-duration-200);
 	transition-timing-function: var(--transition-timing);
 
+  &:focus-visible {
+    box-shadow: 0 0 0 rem(2) var(--color-white-1), 0 0 0 rem(4) #000;
+    outline: none;
+  }
+
 	&--primary {
 		color: var(--color-white-1);
     background: linear-gradient(45deg, var(--color-blue-4) 0%, var(--color-blue-5) 50%, var(--color-blue-4) 100%);

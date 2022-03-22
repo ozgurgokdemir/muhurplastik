@@ -22,10 +22,9 @@
 			}
 		}
 		&:focus-visible {
-			outline: none;
-			// outline-width: 1px;
-			// outline-style: solid;
-			// outline-offset: -1px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 0 0 2px #000;
+      outline: none;
 		}
 	}
 	&__media {

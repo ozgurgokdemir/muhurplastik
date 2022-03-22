@@ -3,6 +3,20 @@ import productList from './product-list';
 const container = document.querySelector('.category-page__products');
 const categoryList = document.querySelector('.category-page__category-list');
 
+const getSearchParams = (key) => {
+  const searchParams = new URLSearchParams(window.location.search);
+  return searchParams.get(key);
+};
+
+const setSearchParams = (key, value) => {
+  if (!window.history.pushState) return;
+  const { search, protocol, host, pathname } = window.location;
+  const searchParams = new URLSearchParams(search);
+  searchParams.set(key, value);
+  const newURL = `${protocol}//${host}${pathname}?${searchParams.toString()}`;
+  window.history.pushState({ path: newURL }, '', newURL);
+};
+
 const getCategories = (list) =>
   list
     .map(({ category }) => category)
@@ -11,36 +25,26 @@ const getCategories = (list) =>
         array.indexOf(category) === index && category !== undefined
     );
 
-const getCategoryHTML = (category) => `
-  <li class="category-page__category" data-category="${category}">
-    <button type="button">
-      ${category}
-      <i class="fas fa-plus icon"></i>
-    </button>
-  </li>`;
+const filterProducts = (products, category) => {
+  const filteredProducts = products.filter(
+    (product) => product.category === category
+  );
+  return filteredProducts.length > 0 ? filteredProducts : productList;
+};
 
 const displayProductCategories = (categoryArray) => {
-  const categoriesHTML = categoryArray
-    .map((category) => getCategoryHTML(category))
+  categoryList.innerHTML = categoryArray
+    .map(
+      (category) => `
+    <li class="category-page__category" data-category="${category}">
+      <button type="button">
+        ${category}
+        <i class="fas fa-plus icon"></i>
+      </button>
+    </li>`
+    )
     .join('');
-  categoryList.innerHTML = `
-    ${getCategoryHTML('Tüm Ürünler')}
-    ${categoriesHTML}
-  `;
 };
-
-const categories = getCategories(productList);
-displayProductCategories(categories);
-
-const toggleActive = (element, array) => {
-  array.forEach((category) => {
-    category.classList.remove('active');
-  });
-  element.classList.add('active');
-};
-
-const categoryItems = categoryList.querySelectorAll('.category-page__category');
-toggleActive(categoryItems[0], categoryItems);
 
 const displayProductCards = (products) => {
   container.innerHTML = products
@@ -57,27 +61,36 @@ const displayProductCards = (products) => {
         <h3 class="card__title">${product.name}</h3>
       </div>
     </a>
-    </div>
-  `
+    </div>`
     )
     .join('');
 };
 
-displayProductCards(productList);
+const toggleActive = (element, array) => {
+  array.forEach((category) => {
+    category.classList.remove('active');
+  });
+  element.classList.add('active');
+};
 
-let currentCategory = 'Tüm Ürünler';
+const categories = ['Tüm Ürünler', ...getCategories(productList)];
+let currentCategory = getSearchParams('kategori') ?? 'Tüm Ürünler';
+let currentProducts = filterProducts(productList, currentCategory);
 
-const filterProducts = (targetCategory) =>
-  targetCategory === 'Tüm Ürünler'
-    ? productList
-    : productList.filter((product) => product.category === targetCategory);
+displayProductCategories(categories);
+displayProductCards(currentProducts);
+
+const categoryItems = categoryList.querySelectorAll('.category-page__category');
+const categoryIndex = categories.findIndex((i) => i === currentCategory);
+toggleActive(categoryItems[categoryIndex], categoryItems);
 
 const handleClick = (element) => {
   const targetCategory = element.dataset.category;
   if (targetCategory === currentCategory) return;
-  const products = filterProducts(targetCategory);
+  currentProducts = filterProducts(productList, targetCategory);
   currentCategory = targetCategory;
-  displayProductCards(products);
+  setSearchParams('kategori', currentCategory);
+  displayProductCards(currentProducts);
   toggleActive(element, categoryItems);
 };
 
