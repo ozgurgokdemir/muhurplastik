@@ -27,6 +27,7 @@ export default class Hamburger {
 
     this.buttonTransition = getTransitionString('button');
     this.menuTransition = getTransitionString('menu');
+    this.transitionTimeout = undefined;
 
     this.setTransitions();
     this.addEventListeners();
@@ -40,28 +41,26 @@ export default class Hamburger {
   }
 
   open() {
+    clearTimeout(this.transitionTimeout);
     this.bars[0].style.top = `calc(50% - ${3.6 / UserMedia.fontSize}rem / 2)`;
     this.bars[1].style.opacity = '0';
     this.bars[2].style.top = `calc(50% - ${3.6 / UserMedia.fontSize}rem / 2)`;
-    setTimeout(() => {
-      if (isActive(this.menu)) {
-        this.bars[0].style.transform = 'rotate(-45deg)';
-        this.bars[2].style.transform = 'rotate(45deg)';
-      }
+    this.transitionTimeout = setTimeout(() => {
+      this.bars[0].style.transform = 'rotate(-45deg)';
+      this.bars[2].style.transform = 'rotate(45deg)';
     }, transition.button.duration);
   }
 
   close() {
+    clearTimeout(this.transitionTimeout);
     this.bars[0].style.transform = 'rotate(0deg)';
     this.bars[2].style.transform = 'rotate(0deg)';
-    setTimeout(() => {
-      if (!isActive(this.menu)) {
-        this.bars[0].style.top = '1.25rem';
-        this.bars[1].style.opacity = '1';
-        this.bars[2].style.top = `calc(100% - ${
-          3.6 / UserMedia.fontSize
-        }rem - 1.25rem)`;
-      }
+    this.transitionTimeout = setTimeout(() => {
+      this.bars[0].style.top = '1.25rem';
+      this.bars[1].style.opacity = '1';
+      this.bars[2].style.top = `calc(100% - ${
+        3.6 / UserMedia.fontSize
+      }rem - 1.25rem)`;
     }, transition.button.duration);
   }
 

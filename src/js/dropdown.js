@@ -1,8 +1,6 @@
 import { isActive, targetHeight } from './utility.js';
 import UserMedia from './UserMedia.js';
 
-const isFirstToggle = true;
-
 export default class Dropdown {
   constructor(container) {
     this.container = container;
@@ -11,7 +9,9 @@ export default class Dropdown {
     this.dropdown = container.querySelector('.js-dropdown');
     this.height = targetHeight(this.dropdown);
     this.chevron = container.querySelectorAll('.chevron');
-    this.duration = 200;
+
+    this.transitionDuration = 200;
+    this.transitionTimeout = undefined;
 
     this.toggle = this.toggle.bind(this);
     this.handleMouse = this.handleMouse.bind(this);
@@ -24,23 +24,21 @@ export default class Dropdown {
   }
 
   show() {
+    clearTimeout(this.transitionTimeout);
     this.toggleActive();
     this.dropdown.style.visibility = 'visible';
     this.dropdown.style.height = this.height;
   }
 
   hide() {
+    clearTimeout(this.transitionTimeout);
     this.toggleActive();
-    if (isFirstToggle) this.height = targetHeight(this.dropdown);
+    this.height = targetHeight(this.dropdown);
     this.dropdown.style.height = this.height;
-    setTimeout(() => {
-      this.dropdown.style.height = '0px';
-    }, 0);
-    setTimeout(() => {
-      if (!isActive(this.container)) {
-        this.dropdown.style.visibility = 'hidden';
-      }
-    }, this.duration);
+    setTimeout(() => (this.dropdown.style.height = '0px'), 0);
+    this.transitionTimeout = setTimeout(() => {
+      this.dropdown.style.visibility = 'hidden';
+    }, this.transitionDuration);
   }
 
   toggleActive() {
@@ -56,18 +54,12 @@ export default class Dropdown {
   }
 
   handleFocus() {
-    if (this.container.matches(':focus-within') && !isActive(this.container))
-      this.show();
-    if (!this.container.matches(':focus-within') && isActive(this.container))
-      this.hide();
-  }
-
-  updateHeight() {
-    this.height = targetHeight(this.dropdown);
+    const isFocused = this.container.matches(':focus-within');
+    if (isFocused && !isActive(this.container)) this.show();
+    if (!isFocused && isActive(this.container)) this.hide();
   }
 
   reset() {
-    // this.container.classList.remove('active');
     this.button?.classList.remove('active');
     this.hover?.classList.remove('active');
     this.chevron.forEach((element) => element?.classList.add('active'));
@@ -79,8 +71,8 @@ export default class Dropdown {
   addEventListeners() {
     this.button?.addEventListener('click', this.toggle);
 
-    if (UserMedia.device === UserMedia.DEVICE_ENUMS.MOBILE || !this.hover)
-      return;
+    const { device, DEVICE_ENUMS } = UserMedia;
+    if (device === DEVICE_ENUMS.MOBILE || !this.hover) return;
 
     this.container.addEventListener('mouseenter', this.handleMouse, {
       capture: true,
